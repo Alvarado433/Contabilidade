@@ -4,7 +4,7 @@ import dados from "@/Dados/site";
 import './../public/site/topo/Topo.css'
 import './../public/site/navbar/Menu.css'
 import './../public/site/servico/abertura/abertura.css'
-import './../public/site/Footer/footer.css'
+import './../public/Footer/footer.css'
 import { ToastContainer } from "react-toastify";
 export const metadata: Metadata = {
   title: dados.configuracao.titulo,

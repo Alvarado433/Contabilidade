@@ -9,13 +9,11 @@
 /* FUNDO DO FOOTER */
 .footer {
   background:
-    repeating-linear-gradient(
-      -45deg,
-      rgba(255,255,255,0.03),
-      rgba(255,255,255,0.03) 6px,
+    repeating-linear-gradient(-45deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0.03) 6px,
       transparent 6px,
-      transparent 12px
-    ),
+      transparent 12px),
     linear-gradient(135deg, var(--azul-medio), var(--azul-escuro));
   color: var(--branco);
   position: relative;
@@ -108,7 +106,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,7 +121,7 @@
 
 /* RODAPÉ FINAL */
 .footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
   padding: 18px 10px;
   background: #021024;
@@ -162,7 +160,7 @@
   border: none;
   color: white;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   transition: 0.3s;
 }
 
@@ -198,6 +196,7 @@
 
   .footer-col ul li a {
     justify-content: center;
+    color: #c7d3ff;
   }
 
   .footer-social-icons {

@@ -1,17 +1,19 @@
 'use client';
 
 import React from "react";
-import { FooterProps } from "@/Dados/Interfaces/Footer";
 import Icone from "@/utils/Icones/icone";
+import { FooterProps } from "@/Dados/Interfaces/Footer";
 
-export default function Footer({
-  empresa,
-  institucional,
-  atendimento,
-  social,
-  rodape,
-  botoes,
-}: FooterProps) {
+export default function Footer({ data }: FooterProps) {
+  const {
+    empresa,
+    institucional,
+    atendimento,
+    social,
+    rodape,
+    botoes,
+  } = data;
+
   return (
     <footer className="footer">
       <div className="footer-overlay" />
@@ -127,8 +129,6 @@ export default function Footer({
       >
         <Icone nome={botoes?.topo?.icone || "fa-solid fa-arrow-up"} />
       </button>
-
-      
     </footer>
   );
 }

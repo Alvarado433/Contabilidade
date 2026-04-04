@@ -19,10 +19,7 @@ const dados = {
     },
 
     itens: [
-      {
-        titulo: "Início",
-        url: "/",
-      },
+      { titulo: "Início", url: "/" },
       {
         titulo: "Serviços",
         url: "#",
@@ -43,18 +40,9 @@ const dados = {
           { titulo: "Relatórios de Impacto", url: "/acoes-sociais/relatorios" },
         ],
       },
-      {
-        titulo: "Sobre Nós",
-        url: "/sobre",
-      },
-      {
-        titulo: "Blog",
-        url: "/blog",
-      },
-      {
-        titulo: "Contato",
-        url: "/contato",
-      },
+      { titulo: "Sobre Nós", url: "/sobre" },
+      { titulo: "Blog", url: "/blog" },
+      { titulo: "Contato", url: "/contato" },
     ],
 
     botaoDireito: {
@@ -93,24 +81,7 @@ const dados = {
     subtitulo:
       "Transforme sua ideia em um negócio de sucesso com segurança e agilidade.",
     descricao:
-      "Na Visacont Contabilidade oferecemos assessoria completa para abertura e legalização da sua empresa. Processo 100% digital, rápido e transparente — ideal para quem quer empreender sem complicações.",
-
-    cores: {
-      gradiente: "linear-gradient(135deg, #004aad, #007bff)",
-      icone: "#007bff",
-      botao: "#004aad",
-    },
-
-    botoes: {
-      principal: {
-        texto: "Solicitar atendimento",
-        url: "/contato",
-      },
-      secundario: {
-        texto: "Ver detalhes",
-        url: "#conteudo",
-      },
-    },
+      "Na Visacont Contabilidade oferecemos assessoria completa para abertura e legalização da sua empresa.",
   },
 
   renderServicos: {
@@ -121,199 +92,23 @@ const dados = {
       {
         icone: "fa-solid fa-building",
         titulo: "Abertura de Empresa",
-        texto:
-          "Assessoria completa para abertura e legalização da sua empresa — sem burocracia e com agilidade.",
-        lista: [
-          "Documentação rápida",
-          "Consultoria personalizada",
-          "Suporte total",
-        ],
+        texto: "Assessoria completa para abertura da sua empresa.",
         url: "/servicos/abertura",
       },
       {
         icone: "fa-solid fa-calculator",
         titulo: "Contabilidade",
-        texto:
-          "Gestão contábil moderna e estratégica para manter sua empresa em conformidade e rentável.",
-        lista: [
-          "Análises detalhadas",
-          "Relatórios periódicos",
-          "Planejamento tributário",
-        ],
+        texto: "Gestão contábil moderna e estratégica.",
         url: "/servicos/contabilidade",
-      },
-      {
-        icone: "fa-solid fa-users-gear",
-        titulo: "Folha de Pagamento",
-        texto:
-          "Processamento completo da folha, com segurança e conformidade legal.",
-        lista: [
-          "Cálculos corretos",
-          "Gestão de benefícios",
-          "Suporte aos funcionários",
-        ],
-        url: "/servicos/folha",
-      },
-      {
-        icone: "fa-solid fa-file-invoice-dollar",
-        titulo: "Departamento Fiscal",
-        texto:
-          "Controle e apuração fiscal com organização e transparência total.",
-        lista: [
-          "Apuração de impostos",
-          "Declarações fiscais",
-          "Orientação tributária",
-        ],
-        url: "/servicos/fiscal",
       },
     ],
   },
 
   empresaCompleta: {
     guia: {
-      badge: "Abertura e Legalização",
       titulo: "Guia Completo de Abertura de Empresa",
       descricao:
-        "Tudo o que você precisa saber para abrir sua empresa da forma correta: documentos, regras, prazos, custos e passos detalhados.",
-      topicos: [
-        "Tipos de empresa (MEI, ME, EPP, SLU, LTDA)",
-        "Documentos necessários",
-        "Custos e prazos médios",
-        "Regimes tributários e diferenças",
-        "Checklist de abertura",
-        "Erros comuns que atrapalham a legalização",
-      ],
-    },
-
-    documentos: {
-      badge: "Documentação",
-      titulo: "Checklist de Documentos Necessários",
-      descricao:
-        "Antes de iniciar o processo, certifique-se de ter toda a documentação em mãos.",
-      itemPrefixo: "Documento",
-      icone: "✓",
-      lista: [
-        "RG e CPF (dos sócios)",
-        "Comprovante de endereço",
-        "Título da empresa (nome fantasia)",
-        "Atividade principal (CNAE)",
-        "Participação societária (em caso de LTDA)",
-        "Endereço fiscal ou comercial",
-      ],
-    },
-
-    regimes: {
-      badge: "Tributação",
-      titulo: "Qual é o melhor regime tributário?",
-      descricao:
-        "Compare os regimes mais comuns e entenda qual opção pode fazer mais sentido para o seu negócio.",
-      opcaoPrefixo: "Opção",
-      labels: {
-        ideal: "Ideal para",
-        vantagens: "Vantagens",
-        cuidado: "Atenção",
-      },
-      tabela: [
-        {
-          regime: "Simples Nacional",
-          ideal: "Micro e pequenas empresas",
-          vantagens: "Unificação de tributos, menos burocracia",
-          cuidado: "Tabela varia por anexo e receita",
-        },
-        {
-          regime: "Lucro Presumido",
-          ideal: "Empresas com margens elevadas",
-          vantagens: "Cálculo simplificado",
-          cuidado: "Não aproveita créditos",
-        },
-        {
-          regime: "Lucro Real",
-          ideal: "Empresas grandes ou tributação alta",
-          vantagens: "Créditos fiscais",
-          cuidado: "Alta complexidade",
-        },
-      ],
-    },
-
-    simulador: {
-      badge: "Custos Iniciais",
-      titulo: "Simulação de Custos Iniciais",
-      descricao:
-        "Valores estimados para abrir sua empresa (podem variar por estado).",
-      custos: [
-        {
-          item: "Registro na Junta Comercial",
-          valor: "R$ 180 – R$ 450",
-        },
-        {
-          item: "Emissão de Certificado Digital",
-          valor: "R$ 150 – R$ 250",
-        },
-        {
-          item: "Contrato Social",
-          valor: "R$ 0 – R$ 800 (dependendo do tipo)",
-        },
-        {
-          item: "Legalização e Alvarás",
-          valor: "R$ 0 – R$ 400",
-        },
-      ],
-      mensalidade: {
-        titulo: "Custo Mensal Após Abrir a Empresa",
-        valor: "R$ 150 – R$ 600",
-        obs: "Depende da atividade e quantidade de funcionários.",
-      },
-    },
-
-    erros: {
-      badge: "Atenção",
-      titulo: "Erros Comuns ao Abrir uma Empresa",
-      descricao:
-        "Evite retrabalho, atrasos e custos desnecessários durante a legalização da empresa.",
-      lista: [
-        "Escolher o CNAE errado e pagar impostos mais altos",
-        "Abrir no regime errado e ter prejuízos sem necessidade",
-        "Não registrar endereço fiscal corretamente",
-        "Falta de contrato societário bem definido",
-        "Não prever crescimento do negócio",
-        "Esquecer obrigações após o CNPJ ativo",
-      ],
-    },
-
-    faq: {
-      badge: "Perguntas Frequentes",
-      titulo: "Perguntas Frequentes",
-      descricao:
-        "Respostas rápidas para as dúvidas mais comuns de quem está começando.",
-      questoes: [
-        {
-          q: "Quanto tempo leva para abrir uma empresa?",
-          a: "Entre 24h e 5 dias úteis, dependendo da Junta Comercial.",
-        },
-        {
-          q: "Posso abrir empresa sozinho?",
-          a: "Sim. Modelos SLU e MEI permitem 1 único sócio.",
-        },
-        {
-          q: "Preciso de contador?",
-          a: "Sim, exceto MEI. Para empresas maiores, é obrigatório.",
-        },
-        {
-          q: "Posso usar meu endereço residencial?",
-          a: "Depende da sua prefeitura e do tipo de atividade.",
-        },
-      ],
-    },
-
-    cta: {
-      badge: "Próximo passo",
-      titulo: "Pronto para abrir sua empresa de forma correta?",
-      descricao:
-        "Nossa equipe cuida de 100% do processo para você empreender com segurança desde o primeiro dia.",
-      botao: {
-        texto: "Começar Agora",
-        url: "/contato",
-      },
+        "Tudo o que você precisa saber para abrir sua empresa da forma correta.",
     },
   },
 
@@ -324,137 +119,18 @@ const dados = {
     },
 
     social: [
-      {
-        url: "https://wa.me/5511999990000",
-      },
-      {
-        url: "https://facebook.com",
-      },
-      {
-        url: "https://instagram.com",
-      },
-      {
-        url: "https://linkedin.com",
-      },
+      { url: "https://wa.me/5511999990000" },
+      { url: "https://facebook.com" },
+      { url: "https://instagram.com" },
+      { url: "https://linkedin.com" },
     ],
-  },
-
-  footer: {
-    empresa: {
-      logo: "/assets/img/Visacont.png",
-      descricao:
-        "A <strong>Visacont Contabilidade</strong> oferece serviços contábeis inteligentes e confiáveis, ajudando empresas a crescer com segurança e transparência.",
-      endereco: "Rua das Empresas, 123 - São Paulo/SP",
-      telefone: "(11) 99999-9999",
-      email: "contato@visacont.com.br",
-    },
-
-    institucional: {
-      titulo: "Institucional",
-      links: [
-        {
-          titulo: "Início",
-          icone: "fa-solid fa-house",
-          url: "/",
-        },
-        {
-          titulo: "Sobre Nós",
-          icone: "fa-solid fa-users",
-          url: "/sobre",
-        },
-        {
-          titulo: "Serviços",
-          icone: "fa-solid fa-briefcase",
-          url: "/servicos",
-        },
-        {
-          titulo: "Política de Privacidade",
-          icone: "fa-solid fa-shield-halved",
-          url: "/politica",
-        },
-      ],
-    },
-
-    atendimento: {
-      titulo: "Atendimento",
-      links: [
-        {
-          titulo: "Equipe",
-          icone: "fa-solid fa-user-group",
-          url: "/equipe",
-        },
-        {
-          titulo: "Fale Conosco",
-          icone: "fa-solid fa-envelope",
-          url: "/contato",
-        },
-        {
-          titulo: "Trabalhe Conosco",
-          icone: "fa-solid fa-briefcase",
-          url: "/trabalhe-conosco",
-        },
-      ],
-    },
-
-    social: {
-      titulo: "Conecte-se Conosco",
-      descricao:
-        "Acompanhe nossas novidades e conteúdos exclusivos nas redes sociais.",
-      links: [
-        {
-          icone: "fa-brands fa-facebook-f",
-          url: "https://facebook.com/visacont",
-        },
-        {
-          icone: "fa-brands fa-instagram",
-          url: "https://instagram.com/visacont",
-        },
-        {
-          icone: "fa-brands fa-linkedin-in",
-          url: "https://linkedin.com/company/visacont",
-        },
-      ],
-    },
-
-    rodape: {
-      texto:
-        "© 2026 <strong>Visacont Contabilidade</strong> — Todos os direitos reservados.",
-      politicaLabel: "Política de Privacidade",
-      politicaUrl: "/politica",
-      assinatura: "Desenvolvido por <strong>AlvaradoTech</strong>",
-    },
-
-    botoes: {
-      topo: {
-        icone: "fa-solid fa-arrow-up",
-        ariaLabel: "Voltar ao topo",
-      },
-    },
-
-
   },
 
   bannerContabilidade: {
     titulo: "Contabilidade Empresarial",
-
-    subtitulo:
-      "Gestão contábil moderna para empresas que buscam segurança e crescimento.",
-
+    subtitulo: "Gestão contábil moderna para empresas.",
     descricao:
-      "Na <strong>Visacont Contabilidade</strong>, oferecemos suporte completo para organização financeira, cumprimento fiscal e planejamento estratégico do seu negócio.",
-
-    beneficios: [
-      "Planejamento tributário estratégico",
-      "Relatórios financeiros claros",
-      "Atendimento com contador dedicado",
-    ],
-
-    destaques: [
-      "15+ anos de experiência",
-      "500+ empresas atendidas",
-      "Atendimento 100% digital",
-    ],
-
+      "Na Visacont Contabilidade oferecemos suporte completo para seu negócio.",
     imagem: "/assets/img/servicos/contabilidade-banner.svg",
   },
 };

@@ -1,15 +1,10 @@
-export type LinkItem = {
-  titulo: string;
+export interface FooterLink {
+  titulo?: string;
   icone: string;
   url: string;
-};
+}
 
-export type SocialItem = {
-  icone: string;
-  url: string;
-};
-
-export type FooterProps = {
+export interface FooterData {
   empresa: {
     logo: string;
     descricao: string;
@@ -19,16 +14,16 @@ export type FooterProps = {
   };
   institucional: {
     titulo: string;
-    links: LinkItem[];
+    links: FooterLink[];
   };
   atendimento: {
     titulo: string;
-    links: LinkItem[];
+    links: FooterLink[];
   };
   social: {
     titulo: string;
     descricao: string;
-    links: SocialItem[];
+    links: FooterLink[];
   };
   rodape: {
     texto: string;
@@ -42,4 +37,8 @@ export type FooterProps = {
       ariaLabel?: string;
     };
   };
-};
+}
+
+export interface FooterProps {
+  data: FooterData;
+}

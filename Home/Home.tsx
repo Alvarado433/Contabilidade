@@ -1,12 +1,11 @@
 import dados from "@/Dados/site";
-
+import footerData from "@/Dados/footer";
 
 import Topo from "./Topbar/topo";
 import Navbar from "./navbar/navbar";
 import Footer from "./footer/footer";
 import Banner from "./Banner/page";
 import RenderServicos from "./servicos/RenderServicos";
-import footerData from "@/Dados/Footer/footerdata";
 
 export default function Home() {
   return (

@@ -1,9 +1,12 @@
 import dados from "@/Dados/site";
+
+
 import Topo from "./Topbar/topo";
 import Navbar from "./navbar/navbar";
 import Footer from "./footer/footer";
 import Banner from "./Banner/page";
 import RenderServicos from "./servicos/RenderServicos";
+import footerData from "@/Dados/Footer/footerdata";
 
 export default function Home() {
   return (
@@ -20,17 +23,12 @@ export default function Home() {
         botaoDireito={dados.menu.botaoDireito}
         social={dados.rodape.social}
       />
+
       <Banner banner={dados.banner} />
 
       <RenderServicos servicos={dados.renderServicos} />
-      <Footer
-        empresa={dados.footer.empresa}
-        institucional={dados.footer.institucional}
-        atendimento={dados.footer.atendimento}
-        social={dados.footer.social}
-        rodape={dados.footer.rodape}
-        botoes={dados.footer.botoes}
-      />
+
+      <Footer data={footerData} />
     </>
   );
 }

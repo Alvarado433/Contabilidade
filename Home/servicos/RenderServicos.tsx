@@ -1,5 +1,6 @@
 'use client';
 
+import React from "react";
 import {
   FaBuilding,
   FaCalculator,
@@ -13,7 +14,7 @@ type ServicoItem = {
   icone: string;
   titulo: string;
   texto: string;
-  lista: string[];
+  lista?: string[];
   url: string;
 };
 
@@ -35,7 +36,7 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 function renderIcon(iconName?: string) {
-  if (!iconName) return null;
+  if (!iconName) return <FaBuilding />;
   return iconMap[iconName] ?? <FaBuilding />;
 }
 
@@ -70,16 +71,18 @@ export default function RenderServicos({
 
                 <p className="servico-texto">{item.texto}</p>
 
-                <ul className="servico-lista">
-                  {item.lista.map((listaItem, i) => (
-                    <li key={i}>
-                      <span className="check-icon">
-                        <FaCheck />
-                      </span>
-                      <span>{listaItem}</span>
-                    </li>
-                  ))}
-                </ul>
+                {item.lista && item.lista.length > 0 && (
+                  <ul className="servico-lista">
+                    {item.lista.map((listaItem, i) => (
+                      <li key={i}>
+                        <span className="check-icon">
+                          <FaCheck />
+                        </span>
+                        <span>{listaItem}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
                 <a href={item.url} className="servico-botao">
                   <span>Saiba mais</span>

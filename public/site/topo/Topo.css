@@ -1,0 +1,326 @@
+/* ==========================================================
+   💙 TOPBAR VISACONT — CLEAN GLASS BLUE
+   Ideal para páginas com fundo branco
+   ========================================================== */
+
+.topbar {
+  position: relative;
+  z-index: 1030;
+  overflow: hidden;
+
+  padding: 16px 0;
+
+  font-family: "Poppins", "Inter", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  color: #f8fbff;
+
+  background: linear-gradient(135deg, #0a3d91 0%, #0c56c9 55%, #1568e6 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+
+  box-shadow:
+    0 8px 20px rgba(10, 61, 145, 0.18),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* reflexo azul suave */
+.topbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.05) 18%,
+      rgba(255, 255, 255, 0.02) 30%,
+      transparent 48%
+    ),
+    radial-gradient(
+      circle at 15% 50%,
+      rgba(255, 255, 255, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 50%,
+      rgba(120, 190, 255, 0.08),
+      transparent 24%
+    );
+}
+
+/* linha premium inferior */
+.topbar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 213, 79, 0.72),
+    rgba(255, 255, 255, 0.28),
+    transparent
+  );
+}
+
+/* ==========================================================
+   CONTAINER
+   ========================================================== */
+
+.topbar .container {
+  position: relative;
+  z-index: 2;
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* ==========================================================
+   BLOCO EMAIL
+   ========================================================== */
+
+.email-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.email-icon {
+  font-size: 18px;
+  color: #ffd54f;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.email-area a {
+  color: #f8fbff;
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.25s ease, text-shadow 0.25s ease, opacity 0.25s ease;
+}
+
+.email-area:hover .email-icon {
+  transform: translateY(-2px) scale(1.05);
+  color: #ffe082;
+}
+
+.email-area:hover a {
+  color: #fff7cf;
+  text-shadow: 0 0 8px rgba(255, 239, 170, 0.2);
+}
+
+/* ==========================================================
+   BLOCO TELEFONES
+   ========================================================== */
+
+.phones {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  min-width: 0;
+}
+
+.phone-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 12px;
+  border-radius: 10px;
+
+  color: #f8fbff;
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.phone-link:hover {
+  transform: translateY(-2px);
+  color: #fff1a6;
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.phone-icon,
+.whatsapp-icon {
+  font-size: 17px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.phone-link:hover .phone-icon {
+  color: #ffd54f;
+}
+
+.whatsapp-link:hover .whatsapp-icon {
+  color: #25d366;
+  transform: rotate(8deg) scale(1.05);
+}
+
+.separator {
+  color: rgba(255, 255, 255, 0.34);
+  font-size: 0.85rem;
+  user-select: none;
+}
+
+/* ==========================================================
+   STICKY OPCIONAL
+   ========================================================== */
+
+.topbar.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation: slideDown 0.55s ease forwards;
+  box-shadow:
+    0 10px 24px rgba(10, 61, 145, 0.22),
+    0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (max-width: 991px) {
+  .topbar {
+    padding: 14px 0;
+    font-size: 0.89rem;
+  }
+
+  .topbar .container {
+    padding: 0 18px;
+    gap: 0.8rem;
+  }
+
+  .phones {
+    gap: 10px;
+  }
+
+  .phone-link {
+    padding: 7px 10px;
+  }
+}
+
+/* ==========================================================
+   MOBILE
+   Email à esquerda / contatos à direita
+   ========================================================== */
+
+@media (max-width: 576px) {
+  .topbar {
+    padding: 13px 0;
+    font-size: 0.82rem;
+  }
+
+  .topbar .container {
+    padding: 0 14px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+  }
+
+  .email-area,
+  .phones {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .email-area {
+    justify-content: flex-start;
+  }
+
+  .phones {
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .email-area a,
+  .phone-link span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .email-icon,
+  .phone-icon,
+  .whatsapp-icon {
+    font-size: 15px;
+  }
+
+  .phone-link {
+    padding: 5px 7px;
+    border-radius: 8px;
+  }
+
+  .separator {
+    display: none;
+  }
+}
+
+/* ==========================================================
+   TELAS MUITO PEQUENAS
+   ========================================================== */
+
+@media (max-width: 390px) {
+  .topbar {
+    font-size: 0.76rem;
+    padding: 11px 0;
+  }
+
+  .topbar .container {
+    padding: 0 10px;
+    gap: 0.45rem;
+  }
+
+  .phones {
+    gap: 6px;
+  }
+
+  .phone-link {
+    padding: 4px 6px;
+  }
+
+  .whatsapp-link span {
+    display: none;
+  }
+}

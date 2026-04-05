@@ -31,10 +31,11 @@ export default function Home() {
 
       <Banner banner={bannerData.banner} />
 
-      <EspecialistaDestaque banner={bannerDestaque} />
+
 
       <RenderServicos servicos={dados.renderServicos} />
 
+      <EspecialistaDestaque banner={bannerDestaque} />
       <Footer data={footerData} />
     </>
   );

@@ -1,12 +1,13 @@
 import dados from "@/Dados/site";
 
-
 import Topo from "./Topbar/topo";
 import Navbar from "./navbar/navbar";
 import Footer from "./footer/footer";
 import Banner from "./Banner/page";
 import RenderServicos from "./servicos/RenderServicos";
+
 import footerData from "@/Dados/Footer/footerdata";
+import bannerData from "@/Dados/Banner/banner";
 
 export default function Home() {
   return (
@@ -24,7 +25,7 @@ export default function Home() {
         social={dados.rodape.social}
       />
 
-      <Banner banner={dados.banner} />
+      <Banner banner={bannerData.banner} />
 
       <RenderServicos servicos={dados.renderServicos} />
 

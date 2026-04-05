@@ -1,3 +1,5 @@
+'use client';
+
 import dados from "@/Dados/site";
 import footerData from "@/Dados/Footer/footerdata";
 import folhaData from "@/Dados/Folha/folha";
@@ -8,7 +10,6 @@ import Footer from "@/Home/footer/footer";
 import BannerFolhaInterno from "@/utils/banner/Interno/BannerFolhaInterno";
 import Icone from "@/utils/Icones/icone";
 import { getFolhaChartData } from "@/Dados/functions/folha";
-
 
 export default function FolhaPage() {
   const folha = folhaData.folhaPagamento;

@@ -1,11 +1,17 @@
+import footerData from "@/Dados/Footer/footerdata";
+import { EmpresaCompletaData } from "@/Dados/Interfaces/abertura";
 import dados from "@/Dados/site";
+
+
 import Footer from "@/Home/footer/footer";
 import Navbar from "@/Home/navbar/navbar";
 import Topo from "@/Home/Topbar/topo";
 import BannerInterno from "@/utils/banner/Interno/BannerInterno";
 
+
+
 export default function AberturaPage() {
-  const empresa = dados.empresaCompleta;
+  const empresa = dados.empresaCompleta as EmpresaCompletaData;
 
   return (
     <>
@@ -14,16 +20,15 @@ export default function AberturaPage() {
         telefone={dados.topo.telefone}
         whatsapp={dados.topo.whatsapp}
       />
+
       <Navbar
         logo={dados.menu.logo}
         itens={dados.menu.itens}
         botaoDireito={dados.menu.botaoDireito}
         social={dados.rodape.social}
       />
+
       <main className="abertura-page">
-
-
-
         <BannerInterno />
 
         <section id="conteudo" className="abertura-conteudo">
@@ -35,8 +40,11 @@ export default function AberturaPage() {
             </div>
 
             <div className="abertura-grid">
-              {empresa.guia.topicos.map((topico, index) => (
-                <article key={index} className="abertura-card abertura-card-topico">
+              {empresa.guia.topicos.map((topico: string, index: number) => (
+                <article
+                  key={index}
+                  className="abertura-card abertura-card-topico"
+                >
                   <div className="abertura-card-topo">
                     <span className="abertura-numero">
                       {String(index + 1).padStart(2, "0")}
@@ -52,17 +60,20 @@ export default function AberturaPage() {
         <section className="abertura-bloco abertura-bloco-claro">
           <div className="abertura-container">
             <div className="abertura-header">
-              <span className="abertura-badge">{empresa.documentos.badge}</span>
+              <span className="abertura-badge">
+                {empresa.documentos.badge}
+              </span>
               <h2>{empresa.documentos.titulo}</h2>
               <p>{empresa.documentos.descricao}</p>
             </div>
 
             <div className="documentos-grid">
-              {empresa.documentos.lista.map((item, index) => (
+              {empresa.documentos.lista.map((item: string, index: number) => (
                 <article key={index} className="documento-card">
                   <span className="documento-icone">
                     {empresa.documentos.icone || "✓"}
                   </span>
+
                   <div>
                     <h3>
                       {empresa.documentos.itemPrefixo}{" "}
@@ -85,30 +96,41 @@ export default function AberturaPage() {
             </div>
 
             <div className="regimes-cards">
-              {empresa.regimes.tabela.map((item, index) => (
-                <article key={index} className="regime-card">
-                  <div className="regime-card-topo">
-                    <h3>{item.regime}</h3>
-                    <span className="regime-chip">
-                      {empresa.regimes.opcaoPrefixo} {index + 1}
-                    </span>
-                  </div>
+              {empresa.regimes.tabela.map(
+                (
+                  item: {
+                    regime: string;
+                    ideal: string;
+                    vantagens: string;
+                    cuidado: string;
+                  },
+                  index: number
+                ) => (
+                  <article key={index} className="regime-card">
+                    <div className="regime-card-topo">
+                      <h3>{item.regime}</h3>
+                      <span className="regime-chip">
+                        {empresa.regimes.opcaoPrefixo} {index + 1}
+                      </span>
+                    </div>
 
-                  <ul className="regime-lista">
-                    <li>
-                      <strong>{empresa.regimes.labels.ideal}:</strong> {item.ideal}
-                    </li>
-                    <li>
-                      <strong>{empresa.regimes.labels.vantagens}:</strong>{" "}
-                      {item.vantagens}
-                    </li>
-                    <li>
-                      <strong>{empresa.regimes.labels.cuidado}:</strong>{" "}
-                      {item.cuidado}
-                    </li>
-                  </ul>
-                </article>
-              ))}
+                    <ul className="regime-lista">
+                      <li>
+                        <strong>{empresa.regimes.labels.ideal}:</strong>{" "}
+                        {item.ideal}
+                      </li>
+                      <li>
+                        <strong>{empresa.regimes.labels.vantagens}:</strong>{" "}
+                        {item.vantagens}
+                      </li>
+                      <li>
+                        <strong>{empresa.regimes.labels.cuidado}:</strong>{" "}
+                        {item.cuidado}
+                      </li>
+                    </ul>
+                  </article>
+                )
+              )}
             </div>
           </div>
         </section>
@@ -122,15 +144,20 @@ export default function AberturaPage() {
             </div>
 
             <div className="custos-grid">
-              {empresa.simulador.custos.map((item, index) => (
-                <article key={index} className="custo-card">
-                  <span className="custo-indice">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3>{item.item}</h3>
-                  <strong>{item.valor}</strong>
-                </article>
-              ))}
+              {empresa.simulador.custos.map(
+                (
+                  item: { item: string; valor: string },
+                  index: number
+                ) => (
+                  <article key={index} className="custo-card">
+                    <span className="custo-indice">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3>{item.item}</h3>
+                    <strong>{item.valor}</strong>
+                  </article>
+                )
+              )}
             </div>
 
             <div className="mensalidade-box">
@@ -154,7 +181,7 @@ export default function AberturaPage() {
             </div>
 
             <div className="erros-grid">
-              {empresa.erros.lista.map((erro, index) => (
+              {empresa.erros.lista.map((erro: string, index: number) => (
                 <article key={index} className="erro-card">
                   <span className="erro-indice">
                     {String(index + 1).padStart(2, "0")}
@@ -175,20 +202,26 @@ export default function AberturaPage() {
             </div>
 
             <div className="faq-wrapper">
-              {empresa.faq.questoes.map((item, index) => (
-                <details key={index} className="faq-item" open={index === 0}>
-                  <summary>
-                    <span className="faq-numero">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span className="faq-pergunta">{item.q}</span>
-                    <span className="faq-icone">+</span>
-                  </summary>
-                  <div className="faq-resposta">
-                    <p>{item.a}</p>
-                  </div>
-                </details>
-              ))}
+              {empresa.faq.questoes.map(
+                (
+                  item: { q: string; a: string },
+                  index: number
+                ) => (
+                  <details key={index} className="faq-item" open={index === 0}>
+                    <summary>
+                      <span className="faq-numero">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="faq-pergunta">{item.q}</span>
+                      <span className="faq-icone">+</span>
+                    </summary>
+
+                    <div className="faq-resposta">
+                      <p>{item.a}</p>
+                    </div>
+                  </details>
+                )
+              )}
             </div>
           </div>
         </section>
@@ -207,17 +240,9 @@ export default function AberturaPage() {
             </div>
           </div>
         </section>
-
-
       </main>
-      <Footer
-        empresa={dados.footer.empresa}
-        institucional={dados.footer.institucional}
-        atendimento={dados.footer.atendimento}
-        social={dados.footer.social}
-        rodape={dados.footer.rodape}
-      />
-    </>
 
+      <Footer data={footerData} />
+    </>
   );
 }

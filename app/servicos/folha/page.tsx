@@ -1,17 +1,14 @@
 import dados from "@/Dados/site";
 
+import footerData from "@/Dados/Footer/footerdata";
 
 import Navbar from "@/Home/navbar/navbar";
 import Topo from "@/Home/Topbar/topo";
 import Footer from "@/Home/footer/footer";
-import footerData from "@/Dados/Footer/footerdata";
-
 import BannerFolhaInterno from "@/utils/banner/Interno/BannerFolhaInterno";
 import folhaData from "@/Dados/Folha/folha";
 
 export default function FolhaPage() {
-  const folha = folhaData.folhaPagamento;
-
   return (
     <>
       <Topo
@@ -28,11 +25,7 @@ export default function FolhaPage() {
       />
 
       <main>
-        <BannerFolhaInterno
-          titulo={folha.titulo}
-          descricao={folha.descricao}
-          gradiente={folha.estilo?.gradiente}
-        />
+        <BannerFolhaInterno data={folhaData.folhaPagamento} />
       </main>
 
       <Footer data={footerData} />

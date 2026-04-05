@@ -7,53 +7,20 @@ import Topo from "@/Home/Topbar/topo";
 import Footer from "@/Home/footer/footer";
 import BannerFolhaInterno from "@/utils/banner/Interno/BannerFolhaInterno";
 import Icone from "@/utils/Icones/icone";
+import { getFolhaChartData } from "@/Dados/functions/folha";
+
 
 export default function FolhaPage() {
   const folha = folhaData.folhaPagamento;
 
-  const totalCustos = folha.indicadoresGraficos.distribuicaoCustos.reduce(
-    (acc, item) => acc + item.valor,
-    0
-  );
-
-  const donutStops = (() => {
-    let acumulado = 0;
-    const cores = ["#1e63db", "#00b894", "#f4b400", "#ea4335"];
-
-    return folha.indicadoresGraficos.distribuicaoCustos
-      .map((item, index) => {
-        const inicio = acumulado;
-        const fatia = (item.valor / totalCustos) * 100;
-        acumulado += fatia;
-        return `${cores[index]} ${inicio}% ${acumulado}%`;
-      })
-      .join(", ");
-  })();
-
-  const maxFaturamento = Math.max(
-    ...folha.indicadoresGraficos.faturamentoMensal.map((item) => item.valor)
-  );
-
-  const maxEvolucao = Math.max(
-    ...folha.indicadoresGraficos.evolucaoFolha.map((item) => item.valor)
-  );
-
-  const radarPoints = (() => {
-    const data = folha.indicadoresGraficos.desempenhoSetor;
-    const centerX = 110;
-    const centerY = 110;
-    const radius = 70;
-
-    return data
-      .map((item, index) => {
-        const angle = (Math.PI * 2 * index) / data.length - Math.PI / 2;
-        const r = (item.valor / 100) * radius;
-        const x = centerX + Math.cos(angle) * r;
-        const y = centerY + Math.sin(angle) * r;
-        return `${x},${y}`;
-      })
-      .join(" ");
-  })();
+  const {
+    donutColors,
+    donutStops,
+    maxFaturamento,
+    linePoints,
+    lineCircles,
+    radarPoints,
+  } = getFolhaChartData(folha);
 
   return (
     <>
@@ -84,7 +51,10 @@ export default function FolhaPage() {
         <section className="secao">
           <div className="container">
             <h2 className="secao-titulo">
-              <Icone nome="fa-solid fa-building-columns" className="titulo-icone" />
+              <Icone
+                nome="fa-solid fa-building-columns"
+                className="titulo-icone"
+              />
               Panorama Contábil
             </h2>
 
@@ -137,18 +107,17 @@ export default function FolhaPage() {
                   </div>
 
                   <div className="legenda">
-                    {folha.indicadoresGraficos.distribuicaoCustos.map((item, index) => {
-                      const cores = ["#1e63db", "#00b894", "#f4b400", "#ea4335"];
-                      return (
-                        <div className="legenda-item" key={index}>
-                          <span
-                            className="legenda-cor"
-                            style={{ background: cores[index] }}
-                          />
-                          <small>{item.nome}</small>
-                        </div>
-                      );
-                    })}
+                    {folha.indicadoresGraficos.distribuicaoCustos.map((item, index) => (
+                      <div className="legenda-item" key={index}>
+                        <span
+                          className="legenda-cor"
+                          style={{
+                            background: donutColors[index % donutColors.length],
+                          }}
+                        />
+                        <small>{item.nome}</small>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </article>
@@ -161,20 +130,18 @@ export default function FolhaPage() {
                       fill="none"
                       stroke="#16c784"
                       strokeWidth="4"
-                      points={folha.indicadoresGraficos.evolucaoFolha
-                        .map((item, index) => {
-                          const x = 20 + index * 55;
-                          const y = 140 - (item.valor / maxEvolucao) * 100;
-                          return `${x},${y}`;
-                        })
-                        .join(" ")}
+                      points={linePoints}
                     />
 
-                    {folha.indicadoresGraficos.evolucaoFolha.map((item, index) => {
-                      const x = 20 + index * 55;
-                      const y = 140 - (item.valor / maxEvolucao) * 100;
-                      return <circle key={index} cx={x} cy={y} r="4" fill="#16c784" />;
-                    })}
+                    {lineCircles.map((point) => (
+                      <circle
+                        key={point.index}
+                        cx={point.x}
+                        cy={point.y}
+                        r="4"
+                        fill="#16c784"
+                      />
+                    ))}
                   </svg>
 
                   <div className="line-labels">

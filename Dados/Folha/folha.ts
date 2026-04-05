@@ -2,159 +2,170 @@ const folhaData = {
   folhaPagamento: {
     badge: "Departamento Pessoal",
 
-    titulo: "Folha de Pagamento",
+    titulo: "Gestão de Folha de Pagamento",
 
     subtitulo:
-      "Mais segurança, organização e conformidade para a gestão trabalhista da sua empresa.",
+      "Mais controle, segurança e conformidade para sua empresa crescer sem riscos trabalhistas.",
 
     descricao:
-      "Gestão completa da folha de pagamento com tecnologia, precisão e conformidade. Cuidamos de cálculos salariais, encargos, benefícios e obrigações trabalhistas para que sua empresa tenha mais tranquilidade, produtividade e segurança jurídica.",
+      "Gerenciamos toda a folha de pagamento da sua empresa com precisão, tecnologia e conformidade com a legislação. Garantimos cálculos corretos, envio de obrigações e total segurança jurídica.",
 
     fraseDestaque:
-      "Reduza erros operacionais e mantenha sua empresa sempre em dia com as exigências legais.",
-
-    beneficios: [
-      "Processamento completo da folha mensal",
-      "Cálculo de férias, 13º salário e rescisões",
-      "Gestão de encargos e obrigações acessórias",
-      "Mais controle, agilidade e segurança trabalhista",
-    ],
-
-    destaques: [
-      "Atendimento especializado",
-      "Rotinas trabalhistas organizadas",
-      "Conformidade com a legislação",
-    ],
-
-    indicadoresResumo: [
-      {
-        numero: "185.0",
-        texto: "Empresas Atendidas",
-      },
-      {
-        numero: "12.3",
-        texto: "Milhões em Folha Gerida",
-      },
-      {
-        numero: "98.0",
-        texto: "% Obrigações no Prazo",
-      },
-      {
-        numero: "5",
-        texto: "Média de Dias por Fechamento",
-      },
-    ],
-
-    indicadoresGraficos: {
-      faturamentoMensal: [
-        { mes: "Jan", valor: 70 },
-        { mes: "Fev", valor: 82 },
-        { mes: "Mar", valor: 95 },
-        { mes: "Abr", valor: 110 },
-        { mes: "Mai", valor: 128 },
-        { mes: "Jun", valor: 150 },
-      ],
-
-      distribuicaoCustos: [
-        { nome: "Folha", valor: 42 },
-        { nome: "Impostos", valor: 26 },
-        { nome: "Serviços", valor: 20 },
-        { nome: "Outros", valor: 12 },
-      ],
-
-      evolucaoFolha: [
-        { ano: "2020", valor: 220 },
-        { ano: "2021", valor: 255 },
-        { ano: "2022", valor: 290 },
-        { ano: "2023", valor: 340 },
-        { ano: "2024", valor: 395 },
-      ],
-
-      desempenhoSetor: [
-        { nome: "Financeiro", valor: 92 },
-        { nome: "DP", valor: 86 },
-        { nome: "Fiscal", valor: 96 },
-        { nome: "RH", valor: 88 },
-        { nome: "Tecnologia", valor: 82 },
-      ],
-    },
-
-    solucoesPremium: {
-      titulo: "Soluções Contábeis Premium",
-      itens: [
-        {
-          icone: "fa-solid fa-file-invoice-dollar",
-          titulo: "Gestão Completa da Folha",
-          descricao:
-            "Automação total do processamento, com integração bancária e relatórios estratégicos.",
-        },
-        {
-          icone: "fa-solid fa-scale-balanced",
-          titulo: "Compliance e Obrigações",
-          descricao:
-            "eSocial, INSS, FGTS, DCTFWeb, envio seguro e atualização no prazo.",
-        },
-        {
-          icone: "fa-solid fa-briefcase-medical",
-          titulo: "Benefícios e Saúde",
-          descricao:
-            "Gestão de planos, auxílios e benefícios com inteligência para o sistema.",
-        },
-        {
-          icone: "fa-solid fa-user-tie",
-          titulo: "Consultoria Fiscal Estratégica",
-          descricao:
-            "Planejamento tributário personalizado com redução de custos e maior lucratividade.",
-        },
-      ],
-    },
-
-    motivos: {
-      titulo: "Por que escolher a Visacont?",
-      itens: [
-        {
-          icone: "fa-solid fa-cloud",
-          titulo: "100% Digital",
-          descricao:
-            "Documentos, folha e holerites em nuvem, acessíveis 24h/dia.",
-        },
-        {
-          icone: "fa-solid fa-lock",
-          titulo: "Segurança de Dados",
-          descricao:
-            "Criptografia corporativa e backup automatizado diário.",
-        },
-        {
-          icone: "fa-solid fa-robot",
-          titulo: "Automação Inteligente",
-          descricao:
-            "Redução de erros, agilidade operacional e apoio contábil.",
-        },
-        {
-          icone: "fa-solid fa-headset",
-          titulo: "Suporte Humanizado",
-          descricao:
-            "Equipe especializada pronta para atender sua empresa.",
-        },
-      ],
-    },
+      "Reduza erros, evite multas e tenha total controle da sua operação trabalhista.",
 
     icone: "fa-solid fa-users-gear",
 
     imagem: {
       src: "/assets/img/servicos/folha-banner.svg",
-      alt: "Serviço de folha de pagamento",
+      alt: "Gestão de folha de pagamento",
     },
 
     estilo: {
+      fundo: "#f4f7fb",
       gradiente: "linear-gradient(135deg, #0d3f86 0%, #1e88ff 100%)",
-      destaque: "#16c784",
-      texto: "#ffffff",
-      textoSuave: "rgba(255,255,255,0.88)",
-      card: "#ffffff",
-      fundo: "#eef3fb",
-      tituloSecao: "#1450c8",
-      sombra: "0 18px 40px rgba(44, 83, 160, 0.12)",
+      tituloSecao: "#0d3f86",
+      destaque: "#00c853",
+      sombra: "0 15px 40px rgba(0,0,0,0.08)",
+    },
+
+    // 🔥 RESUMO RÁPIDO (cards)
+    indicadoresResumo: [
+      { numero: "100%", texto: "conformidade com legislação trabalhista" },
+      { numero: "24h", texto: "prazo médio de suporte" },
+      { numero: "Zero erros", texto: "nos cálculos automatizados" },
+      { numero: "Alta", texto: "segurança nos dados" },
+    ],
+
+    // 🔥 GRÁFICOS
+    indicadoresGraficos: {
+      faturamentoMensal: [
+        { mes: "Jan", valor: 42000 },
+        { mes: "Fev", valor: 48000 },
+        { mes: "Mar", valor: 52000 },
+        { mes: "Abr", valor: 61000 },
+        { mes: "Mai", valor: 68000 },
+      ],
+
+      distribuicaoCustos: [
+        { nome: "Salários", valor: 50 },
+        { nome: "Encargos", valor: 25 },
+        { nome: "Benefícios", valor: 15 },
+        { nome: "Outros", valor: 10 },
+      ],
+
+      evolucaoFolha: [
+        { ano: "2021", valor: 30000 },
+        { ano: "2022", valor: 45000 },
+        { ano: "2023", valor: 60000 },
+        { ano: "2024", valor: 75000 },
+      ],
+
+      desempenhoSetor: [
+        { nome: "RH", valor: 85 },
+        { nome: "Financeiro", valor: 78 },
+        { nome: "Operacional", valor: 90 },
+        { nome: "Fiscal", valor: 82 },
+      ],
+    },
+
+    // 🔥 BENEFÍCIOS
+    beneficios: [
+      "Processamento completo da folha mensal",
+      "Cálculo de férias, 13º salário e rescisões",
+      "Gestão de encargos (INSS, FGTS, IR)",
+      "Envio de obrigações como eSocial e SEFIP",
+      "Redução de erros e retrabalho",
+      "Mais segurança jurídica para sua empresa",
+    ],
+
+    // 🔥 SERVIÇOS DETALHADOS
+    servicosInclusos: [
+      {
+        titulo: "Admissão de Funcionários",
+        descricao:
+          "Cadastro completo de novos colaboradores com envio automático ao eSocial.",
+        icone: "fa-solid fa-user-plus",
+      },
+      {
+        titulo: "Rescisões Trabalhistas",
+        descricao:
+          "Cálculo completo e correto de rescisões com todos os encargos legais.",
+        icone: "fa-solid fa-file-invoice",
+      },
+      {
+        titulo: "Gestão de Benefícios",
+        descricao:
+          "Controle de vale transporte, alimentação e outros benefícios.",
+        icone: "fa-solid fa-gift",
+      },
+      {
+        titulo: "Encargos e Obrigações",
+        descricao:
+          "Cálculo e envio de FGTS, INSS, IR e demais obrigações.",
+        icone: "fa-solid fa-file-invoice-dollar",
+      },
+    ],
+
+    // 🔥 DIFERENCIAIS
+    diferenciais: [
+      {
+        titulo: "Automação Inteligente",
+        descricao: "Processos automatizados para reduzir erros humanos.",
+        icone: "fa-solid fa-robot",
+      },
+      {
+        titulo: "Conformidade Total",
+        descricao: "Sempre atualizado com a legislação trabalhista.",
+        icone: "fa-solid fa-scale-balanced",
+      },
+      {
+        titulo: "Atendimento Especializado",
+        descricao: "Equipe pronta para resolver qualquer demanda.",
+        icone: "fa-solid fa-headset",
+      },
+      {
+        titulo: "Segurança de Dados",
+        descricao: "Proteção avançada das informações da sua empresa.",
+        icone: "fa-solid fa-lock",
+      },
+    ],
+
+    // 🔥 MOTIVOS (já usado no seu layout)
+    motivos: {
+      titulo: "Por que escolher nossa gestão de folha?",
+      itens: [
+        {
+          titulo: "Redução de Custos",
+          descricao: "Evite multas e gastos desnecessários.",
+          icone: "fa-solid fa-chart-line",
+        },
+        {
+          titulo: "Agilidade",
+          descricao: "Processos rápidos e eficientes.",
+          icone: "fa-solid fa-bolt",
+        },
+        {
+          titulo: "Segurança",
+          descricao: "Dados protegidos e confiáveis.",
+          icone: "fa-solid fa-shield-halved",
+        },
+        {
+          titulo: "Escalabilidade",
+          descricao: "Acompanhe o crescimento da sua empresa.",
+          icone: "fa-solid fa-arrow-trend-up",
+        },
+      ],
+    },
+
+    // 🔥 CALL TO ACTION (novo 🔥)
+    cta: {
+      titulo: "Quer simplificar sua folha de pagamento?",
+      descricao:
+        "Fale com nossos especialistas e descubra como podemos ajudar sua empresa a crescer com segurança.",
+      botao: {
+        texto: "Solicitar Consultoria",
+        url: "/contato",
+      },
     },
   },
 };

@@ -73,9 +73,149 @@ const dados = {
 
   empresaCompleta: {
     guia: {
+      badge: "Abertura e Legalização",
       titulo: "Guia Completo de Abertura de Empresa",
       descricao:
-        "Tudo o que você precisa saber para abrir sua empresa da forma correta.",
+        "Tudo o que você precisa saber para abrir sua empresa da forma correta: documentos, regras, prazos, custos e passos detalhados.",
+      topicos: [
+        "Tipos de empresa (MEI, ME, EPP, SLU, LTDA)",
+        "Documentos necessários",
+        "Custos e prazos médios",
+        "Regimes tributários e diferenças",
+        "Checklist de abertura",
+        "Erros comuns que atrapalham a legalização",
+      ],
+    },
+
+    documentos: {
+      badge: "Documentação",
+      titulo: "Checklist de Documentos Necessários",
+      descricao:
+        "Antes de iniciar o processo, certifique-se de ter toda a documentação em mãos.",
+      itemPrefixo: "Documento",
+      icone: "✓",
+      lista: [
+        "RG e CPF (dos sócios)",
+        "Comprovante de endereço",
+        "Título da empresa (nome fantasia)",
+        "Atividade principal (CNAE)",
+        "Participação societária (em caso de LTDA)",
+        "Endereço fiscal ou comercial",
+      ],
+    },
+
+    regimes: {
+      badge: "Tributação",
+      titulo: "Qual é o melhor regime tributário?",
+      descricao:
+        "Compare os regimes mais comuns e entenda qual opção pode fazer mais sentido para o seu negócio.",
+      opcaoPrefixo: "Opção",
+      labels: {
+        ideal: "Ideal para",
+        vantagens: "Vantagens",
+        cuidado: "Atenção",
+      },
+      tabela: [
+        {
+          regime: "Simples Nacional",
+          ideal: "Micro e pequenas empresas",
+          vantagens: "Unificação de tributos, menos burocracia",
+          cuidado: "Tabela varia por anexo e receita",
+        },
+        {
+          regime: "Lucro Presumido",
+          ideal: "Empresas com margens elevadas",
+          vantagens: "Cálculo simplificado",
+          cuidado: "Não aproveita créditos",
+        },
+        {
+          regime: "Lucro Real",
+          ideal: "Empresas grandes ou tributação alta",
+          vantagens: "Créditos fiscais",
+          cuidado: "Alta complexidade",
+        },
+      ],
+    },
+
+    simulador: {
+      badge: "Custos Iniciais",
+      titulo: "Simulação de Custos Iniciais",
+      descricao:
+        "Valores estimados para abrir sua empresa (podem variar por estado).",
+      custos: [
+        {
+          item: "Registro na Junta Comercial",
+          valor: "R$ 180 – R$ 450",
+        },
+        {
+          item: "Emissão de Certificado Digital",
+          valor: "R$ 150 – R$ 250",
+        },
+        {
+          item: "Contrato Social",
+          valor: "R$ 0 – R$ 800 (dependendo do tipo)",
+        },
+        {
+          item: "Legalização e Alvarás",
+          valor: "R$ 0 – R$ 400",
+        },
+      ],
+      mensalidade: {
+        titulo: "Custo Mensal Após Abrir a Empresa",
+        valor: "R$ 150 – R$ 600",
+        obs: "Depende da atividade e quantidade de funcionários.",
+      },
+    },
+
+    erros: {
+      badge: "Atenção",
+      titulo: "Erros Comuns ao Abrir uma Empresa",
+      descricao:
+        "Evite retrabalho, atrasos e custos desnecessários durante a legalização da empresa.",
+      lista: [
+        "Escolher o CNAE errado e pagar impostos mais altos",
+        "Abrir no regime errado e ter prejuízos sem necessidade",
+        "Não registrar endereço fiscal corretamente",
+        "Falta de contrato societário bem definido",
+        "Não prever crescimento do negócio",
+        "Esquecer obrigações após o CNPJ ativo",
+      ],
+    },
+
+    faq: {
+      badge: "Perguntas Frequentes",
+      titulo: "Perguntas Frequentes",
+      descricao:
+        "Respostas rápidas para as dúvidas mais comuns de quem está começando.",
+      questoes: [
+        {
+          q: "Quanto tempo leva para abrir uma empresa?",
+          a: "Entre 24h e 5 dias úteis, dependendo da Junta Comercial.",
+        },
+        {
+          q: "Posso abrir empresa sozinho?",
+          a: "Sim. Modelos SLU e MEI permitem 1 único sócio.",
+        },
+        {
+          q: "Preciso de contador?",
+          a: "Sim, exceto MEI. Para empresas maiores, é obrigatório.",
+        },
+        {
+          q: "Posso usar meu endereço residencial?",
+          a: "Depende da sua prefeitura e do tipo de atividade.",
+        },
+      ],
+    },
+
+    cta: {
+      badge: "Próximo passo",
+      titulo: "Pronto para abrir sua empresa de forma correta?",
+      descricao:
+        "Nossa equipe cuida de 100% do processo para você empreender com segurança desde o primeiro dia.",
+      botao: {
+        texto: "Começar Agora",
+        url: "/contato",
+      },
     },
   },
 

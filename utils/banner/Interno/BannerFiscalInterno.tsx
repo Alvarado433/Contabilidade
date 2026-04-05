@@ -2,7 +2,7 @@
 
 import Icone from "@/utils/Icones/icone";
 
-type BannerFiscalInternoProps = {
+type Props = {
   badge?: string;
   titulo: string;
   subtitulo?: string;
@@ -20,27 +20,27 @@ export default function BannerFiscalInterno({
   destaque,
   icone,
   gradiente,
-}: BannerFiscalInternoProps) {
+}: Props) {
   return (
     <>
-      <section className="banner-fiscal-wrapper">
+      <section className="banner">
         <div
-          className="banner-fiscal-card"
+          className="banner-card"
           style={{
             background:
               gradiente ||
-              "linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)",
+              "linear-gradient(135deg, #0b2a5c 0%, #1e63db 100%)",
           }}
         >
-          <div className="banner-fiscal-overlay" />
+          <div className="overlay" />
 
-          <div className="banner-fiscal-content">
-            {badge && <span className="banner-fiscal-badge">{badge}</span>}
+          <div className="content">
+            {badge && <span className="badge">{badge}</span>}
 
-            <div className="banner-fiscal-titulo">
+            <div className="titulo">
               {icone && (
-                <div className="banner-fiscal-icone">
-                  <Icone nome={icone} className="icone-svg" />
+                <div className="icone">
+                  <Icone nome={icone} />
                 </div>
               )}
 
@@ -51,157 +51,120 @@ export default function BannerFiscalInterno({
 
             <p>{descricao}</p>
 
-            {destaque && <div className="banner-fiscal-destaque">{destaque}</div>}
+            {destaque && <div className="destaque">{destaque}</div>}
           </div>
         </div>
       </section>
 
       <style jsx>{`
-        .banner-fiscal-wrapper {
-          width: 100%;
-          padding: 30px 20px 24px;
-          background: linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+        .banner {
+          padding: 20px 16px 16px;
+          background: linear-gradient(180deg, #f5f8ff 0%, #eef3fb 100%);
         }
 
-        .banner-fiscal-card {
-          max-width: 1180px;
+        .banner-card {
+          max-width: 1100px;
           margin: 0 auto;
-          border-radius: 24px;
-          padding: 42px 34px;
+          border-radius: 20px;
+          padding: 28px 24px; /* 🔥 menor */
           position: relative;
           overflow: hidden;
-          color: #ffffff;
-          box-shadow: 0 20px 45px rgba(0, 55, 145, 0.15);
+          color: #fff;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
 
-        .banner-fiscal-overlay {
+        .overlay {
           position: absolute;
           inset: 0;
           background:
-            radial-gradient(circle at top right, rgba(255,255,255,0.15), transparent 28%),
-            radial-gradient(circle at bottom left, rgba(255,255,255,0.08), transparent 24%);
-          pointer-events: none;
+            radial-gradient(circle at top right, rgba(255,255,255,0.15), transparent 30%),
+            radial-gradient(circle at bottom left, rgba(255,255,255,0.08), transparent 25%);
         }
 
-        .banner-fiscal-content {
+        .content {
           position: relative;
           z-index: 2;
           text-align: center;
           user-select: none;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
         }
 
-        .banner-fiscal-badge {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          min-height: 34px;
-          padding: 6px 14px;
+        .badge {
+          display: inline-block;
+          padding: 5px 12px;
           border-radius: 999px;
-          background: rgba(255, 255, 255, 0.14);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          margin-bottom: 16px;
-          font-size: 0.78rem;
-          font-weight: 700;
-          letter-spacing: 0.2px;
+          background: rgba(255,255,255,0.15);
+          border: 1px solid rgba(255,255,255,0.2);
+          margin-bottom: 12px;
+          font-size: 0.75rem;
+          font-weight: 600;
         }
 
-        .banner-fiscal-titulo {
+        .titulo {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 14px;
-          margin-bottom: 12px;
-          flex-wrap: wrap;
+          gap: 10px;
+          margin-bottom: 10px;
         }
 
-        .banner-fiscal-icone {
-          width: 54px;
-          height: 54px;
-          border-radius: 16px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(255, 255, 255, 0.12);
-          backdrop-filter: blur(4px);
-        }
-
-        .icone-svg {
-          font-size: 1.45rem;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .banner-fiscal-content h1 {
-          margin: 0;
-          font-size: 2.5rem;
-          font-weight: 800;
-          line-height: 1.12;
-        }
-
-        .banner-fiscal-content h2 {
-          margin: 0 0 14px;
-          font-size: 1.05rem;
-          font-weight: 500;
-          line-height: 1.6;
-          color: rgba(255, 255, 255, 0.94);
-        }
-
-        .banner-fiscal-content p {
-          max-width: 760px;
-          margin: 0 auto;
-          font-size: 0.98rem;
-          line-height: 1.8;
-          color: rgba(255, 255, 255, 0.9);
-        }
-
-        .banner-fiscal-destaque {
-          margin: 20px auto 0;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 10px 16px;
+        .icone {
+          width: 42px;
+          height: 42px;
           border-radius: 12px;
-          background: rgba(255, 255, 255, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          font-size: 0.92rem;
-          font-weight: 700;
-          line-height: 1.5;
+          background: rgba(255,255,255,0.15);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.2rem;
         }
 
+        h1 {
+          font-size: 1.9rem; /* 🔥 menor */
+          margin: 0;
+          font-weight: 800;
+        }
+
+        h2 {
+          font-size: 0.95rem;
+          margin: 0 0 10px;
+          font-weight: 400;
+          color: rgba(255,255,255,0.9);
+        }
+
+        p {
+          max-width: 620px;
+          margin: 0 auto;
+          font-size: 0.9rem;
+          line-height: 1.6;
+          color: rgba(255,255,255,0.9);
+        }
+
+        .destaque {
+          margin-top: 14px;
+          padding: 8px 14px;
+          border-radius: 10px;
+          background: rgba(255,255,255,0.12);
+          font-size: 0.85rem;
+          font-weight: 600;
+        }
+
+        /* 📱 RESPONSIVO */
         @media (max-width: 768px) {
-          .banner-fiscal-wrapper {
-            padding: 22px 16px 20px;
+          .banner-card {
+            padding: 22px 16px;
           }
 
-          .banner-fiscal-card {
-            padding: 30px 20px;
-            border-radius: 20px;
+          h1 {
+            font-size: 1.5rem;
           }
 
-          .banner-fiscal-content h1 {
-            font-size: 1.8rem;
+          p {
+            font-size: 0.85rem;
           }
 
-          .banner-fiscal-content h2 {
-            font-size: 0.95rem;
-          }
-
-          .banner-fiscal-content p {
-            font-size: 0.9rem;
-            line-height: 1.7;
-          }
-
-          .banner-fiscal-icone {
-            width: 46px;
-            height: 46px;
-          }
-
-          .icone-svg {
-            font-size: 1.2rem;
+          .icone {
+            width: 36px;
+            height: 36px;
           }
         }
       `}</style>

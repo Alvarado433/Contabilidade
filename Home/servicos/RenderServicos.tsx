@@ -1,49 +1,18 @@
 'use client';
 
 import React from "react";
-import {
-  FaBuilding,
-  FaCalculator,
-  FaUsersCog,
-  FaFileInvoiceDollar,
-  FaCheck,
-  FaArrowRight,
-} from "react-icons/fa";
-
-type ServicoItem = {
-  icone: string;
-  titulo: string;
-  texto: string;
-  lista?: string[];
-  url: string;
-};
-
-type ServicosData = {
-  titulo: string;
-  descricao: string;
-  itens: ServicoItem[];
-};
-
-type RenderServicosProps = {
-  servicos: ServicosData;
-};
-
-const iconMap: Record<string, React.ReactNode> = {
-  "fa-solid fa-building": <FaBuilding />,
-  "fa-solid fa-calculator": <FaCalculator />,
-  "fa-solid fa-users-gear": <FaUsersCog />,
-  "fa-solid fa-file-invoice-dollar": <FaFileInvoiceDollar />,
-};
-
-function renderIcon(iconName?: string) {
-  if (!iconName) return <FaBuilding />;
-  return iconMap[iconName] ?? <FaBuilding />;
-}
+import { RenderServicosProps } from "@/Dados/Interfaces/servicos";
+import { Toast } from "@/utils/toast/toast";
+import Icone from "@/utils/Icones/icone";
+import { FaCheck, FaArrowRight } from "react-icons/fa";
+import { handleClick } from "@/Dados/functions/servicos";
 
 export default function RenderServicos({
   servicos,
 }: RenderServicosProps) {
   const { titulo, descricao, itens } = servicos;
+
+ 
 
   return (
     <>
@@ -63,7 +32,7 @@ export default function RenderServicos({
               <article className="servico-card" key={index}>
                 <div className="servico-card-topo">
                   <div className="servico-icone">
-                    {renderIcon(item.icone)}
+                    <Icone nome={item.icone} className="icone-servico-svg" />
                   </div>
 
                   <h3 className="servico-titulo">{item.titulo}</h3>
@@ -84,10 +53,14 @@ export default function RenderServicos({
                   </ul>
                 )}
 
-                <a href={item.url} className="servico-botao">
+                <button
+                  type="button"
+                  className="servico-botao"
+                  onClick={() => handleClick(item.url, item.titulo)}
+                >
                   <span>Saiba mais</span>
                   <FaArrowRight />
-                </a>
+                </button>
               </article>
             ))}
           </div>
@@ -254,6 +227,14 @@ export default function RenderServicos({
           flex-shrink: 0;
         }
 
+        .icone-servico-svg {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.45rem;
+          line-height: 1;
+        }
+
         .servico-titulo {
           margin: 0 0 14px;
           text-align: center;
@@ -317,6 +298,7 @@ export default function RenderServicos({
           width: 100%;
           padding: 14px 18px;
           border-radius: 999px;
+          border: none;
           text-decoration: none;
           font-size: 0.95rem;
           font-weight: 700;
@@ -327,6 +309,7 @@ export default function RenderServicos({
             transform 0.25s ease,
             box-shadow 0.25s ease,
             filter 0.25s ease;
+          cursor: pointer;
         }
 
         .servico-botao:hover {
@@ -384,6 +367,10 @@ export default function RenderServicos({
             border-radius: 20px;
             font-size: 1.3rem;
             margin-bottom: 18px;
+          }
+
+          .icone-servico-svg {
+            font-size: 1.3rem;
           }
 
           .servico-titulo {
@@ -458,6 +445,10 @@ export default function RenderServicos({
             box-shadow: 0 12px 22px rgba(30, 91, 190, 0.2);
           }
 
+          .icone-servico-svg {
+            font-size: 1.18rem;
+          }
+
           .servico-titulo {
             font-size: 1.05rem;
             line-height: 1.3;
@@ -503,6 +494,10 @@ export default function RenderServicos({
           .servico-icone {
             width: 56px;
             height: 56px;
+            font-size: 1.08rem;
+          }
+
+          .icone-servico-svg {
             font-size: 1.08rem;
           }
 

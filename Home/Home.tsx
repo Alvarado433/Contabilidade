@@ -5,13 +5,13 @@ import Navbar from "./navbar/navbar";
 import Footer from "./footer/footer";
 import Banner from "./Banner/page";
 import RenderServicos from "./servicos/RenderServicos";
+import EspecialistaDestaque from "./Destaque/page";
 
 
 import footerData from "@/Dados/Footer/footerdata";
 import bannerData from "@/Dados/Banner/banner";
-import EspecialistaDestaque from "./Destaque/page";
 import bannerDestaque from "@/Dados/Banner/Bannerdestaque";
-
+import Carrossel from "./carrosselbanner/carrossel";
 
 export default function Home() {
   return (
@@ -31,11 +31,12 @@ export default function Home() {
 
       <Banner banner={bannerData.banner} />
 
-
+      <Carrossel />
 
       <RenderServicos servicos={dados.renderServicos} />
 
       <EspecialistaDestaque banner={bannerDestaque} />
+
       <Footer data={footerData} />
     </>
   );

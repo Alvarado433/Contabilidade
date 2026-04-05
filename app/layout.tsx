@@ -7,6 +7,8 @@ import './../public/site/servico/abertura/abertura.css'
 import './../public/Footer/footer.css'
 import './../public/Banner/Interno/Banner.css'
 import './../public/Especialista/especialista.css'
+import './../public/carrosse/carrossel.css'
+
 import { ToastContainer } from "react-toastify";
 export const metadata: Metadata = {
   title: dados.configuracao.titulo,

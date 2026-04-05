@@ -3,6 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import {
+  FaBars,
+  FaChevronDown,
+  FaChevronUp,
+  FaTimes,
+} from "react-icons/fa";
 import Icone from "@/utils/Icones/icone";
 
 type ItemMenu = {
@@ -70,37 +76,48 @@ export default function Navbar({
     mensagem: string,
     fecharMenu = false
   ) => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
 
     toast.dismiss();
     fecharTudo();
 
     toast.info(mensagem, {
+      position: "top-right",
       autoClose: 3000,
       theme: "dark",
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
     });
 
     timeoutRef.current = setTimeout(() => {
       router.push(url);
     }, 3000);
 
-    if (fecharMenu) fecharSidebar();
+    if (fecharMenu) {
+      fecharSidebar();
+    }
   };
 
-  // 🔥 converte URL → nome do ícone
   const getSocialIconName = (url: string) => {
     if (url.includes("wa.me") || url.includes("whatsapp")) {
       return "bi bi-whatsapp";
     }
+
     if (url.includes("facebook")) {
       return "fa-brands fa-facebook-f";
     }
+
     if (url.includes("instagram")) {
       return "fa-brands fa-instagram";
     }
+
     if (url.includes("linkedin")) {
       return "fa-brands fa-linkedin-in";
     }
+
     return "";
   };
 
@@ -109,47 +126,64 @@ export default function Navbar({
   }, [pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = menuMobileAberto ? "hidden" : "";
+    if (menuMobileAberto) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuMobileAberto]);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   return (
     <>
       <header id="navbar">
         <div className="container">
-          {/* MOBILE BTN */}
           <div className="mobile-left">
             <button
+              type="button"
               className="menu-mobile-btn"
               onClick={() => setMenuMobileAberto(true)}
+              aria-label="Abrir menu"
             >
-              <Icone nome="fa-solid fa-bars" />
+              <FaBars />
             </button>
           </div>
 
-          {/* LOGO */}
           <button
-            className="logo-area"
+            type="button"
+            className="logo-area logo-btn"
             onClick={() =>
-              navegarComToast(logo.url, `Indo para ${logo.nome}...`)
+              navegarComToast(logo.url, `Redirecionando para ${logo.nome}...`)
             }
           >
             <div className="logo-nome">{logo.nome}</div>
             <div className="logo-sub">{logo.subtitulo}</div>
           </button>
 
-          {/* MENU */}
           <nav className="menu-central">
             {itens.map((item) =>
-              item.filhos ? (
+              item.filhos && item.filhos.length > 0 ? (
                 <div
                   key={item.titulo}
                   className="dropdown"
                   onMouseEnter={() => setDropdownAberto(item.titulo)}
                   onMouseLeave={() => setDropdownAberto(null)}
                 >
-                  <button className="menu-item">
-                    {item.titulo}
-                    <Icone nome="fa-solid fa-chevron-down" />
+                  <button type="button" className="menu-item menu-btn-reset">
+                    <span>{item.titulo}</span>
+                    <FaChevronDown size={12} />
                   </button>
 
                   <div
@@ -160,7 +194,8 @@ export default function Navbar({
                     {item.filhos.map((filho) => (
                       <button
                         key={filho.titulo}
-                        className="dropdown-item"
+                        type="button"
+                        className="dropdown-item dropdown-btn-reset"
                         onClick={() =>
                           navegarComToast(
                             filho.url,
@@ -176,7 +211,8 @@ export default function Navbar({
               ) : (
                 <button
                   key={item.titulo}
-                  className="menu-item"
+                  type="button"
+                  className="menu-item menu-btn-reset"
                   onClick={() =>
                     navegarComToast(item.url, `Abrindo ${item.titulo}...`)
                   }
@@ -187,14 +223,14 @@ export default function Navbar({
             )}
           </nav>
 
-          {/* BOTÃO */}
           <div className="navbar-right">
             <button
+              type="button"
               className="btn-consultoria"
               onClick={() =>
                 navegarComToast(
                   botaoDireito.url,
-                  `Indo para ${botaoDireito.titulo}`
+                  `Redirecionando para ${botaoDireito.titulo}...`
                 )
               }
             >
@@ -204,83 +240,113 @@ export default function Navbar({
         </div>
       </header>
 
-      {/* OVERLAY */}
       <div
         className={`overlay ${menuMobileAberto ? "show" : ""}`}
         onClick={fecharSidebar}
       />
 
-      {/* SIDEBAR */}
       <aside className={`sidebar ${menuMobileAberto ? "open" : ""}`}>
         <div className="sidebar-header">
           <div>
-            <h2>{logo.nome}</h2>
-            <p>{logo.subtitulo}</p>
+            <h2 className="sidebar-title">{logo.nome}</h2>
+            <p className="sidebar-subtitle">{logo.subtitulo}</p>
           </div>
 
-          <button onClick={fecharSidebar}>
-            <Icone nome="fa-solid fa-xmark" />
+          <button
+            type="button"
+            className="btn-close-sidebar"
+            onClick={fecharSidebar}
+            aria-label="Fechar menu"
+          >
+            <FaTimes />
           </button>
         </div>
 
         <nav className="sidebar-nav">
           {itens.map((item) =>
-            item.filhos ? (
-              <div key={item.titulo}>
+            item.filhos && item.filhos.length > 0 ? (
+              <div key={item.titulo} className="sidebar-group">
                 <button
+                  type="button"
+                  className="sidebar-link sidebar-btn-reset"
                   onClick={() => toggleSubmenuMobile(item.titulo)}
-                  className="sidebar-link"
                 >
-                  {item.titulo}
-                  <Icone
-                    nome={
-                      submenuMobileAberto === item.titulo
-                        ? "fa-solid fa-chevron-up"
-                        : "fa-solid fa-chevron-down"
-                    }
-                  />
+                  <span>{item.titulo}</span>
+                  {submenuMobileAberto === item.titulo ? (
+                    <FaChevronUp size={14} />
+                  ) : (
+                    <FaChevronDown size={14} />
+                  )}
                 </button>
 
-                {submenuMobileAberto === item.titulo && (
-                  <div className="sidebar-submenu">
-                    {item.filhos.map((filho) => (
-                      <button
-                        key={filho.titulo}
-                        onClick={() =>
-                          navegarComToast(
-                            filho.url,
-                            `Abrindo ${filho.titulo}`,
-                            true
-                          )
-                        }
-                      >
-                        {filho.titulo}
-                      </button>
-                    ))}
-                  </div>
-                )}
+                <div
+                  className={`sidebar-submenu ${
+                    submenuMobileAberto === item.titulo ? "open" : ""
+                  }`}
+                >
+                  {item.filhos.map((filho) => (
+                    <button
+                      key={filho.titulo}
+                      type="button"
+                      className="sidebar-sublink sidebar-sublink-btn"
+                      onClick={() =>
+                        navegarComToast(
+                          filho.url,
+                          `Abrindo ${filho.titulo}...`,
+                          true
+                        )
+                      }
+                    >
+                      {filho.titulo}
+                    </button>
+                  ))}
+                </div>
               </div>
             ) : (
               <button
                 key={item.titulo}
-                className="sidebar-link"
+                type="button"
+                className="sidebar-link sidebar-btn-reset"
                 onClick={() =>
-                  navegarComToast(item.url, `Abrindo ${item.titulo}`, true)
+                  navegarComToast(item.url, `Abrindo ${item.titulo}...`, true)
                 }
               >
-                {item.titulo}
+                <span>{item.titulo}</span>
               </button>
             )
           )}
+
+          <button
+            type="button"
+            className="btn-consultoria sidebar-consultoria"
+            onClick={() =>
+              navegarComToast(
+                botaoDireito.url,
+                `Redirecionando para ${botaoDireito.titulo}...`,
+                true
+              )
+            }
+          >
+            {botaoDireito.titulo}
+          </button>
         </nav>
 
-        {/* SOCIAL */}
         <div className="sidebar-social">
-          {social.map((item, index) => (
-            <a key={index} href={item.url} target="_blank">
-              <Icone nome={getSocialIconName(item.url)} />
-            </a>
-          ))}
+          {social.map((item, index) => {
+            const iconName = getSocialIconName(item.url);
+
+            return (
+              <a
+                key={`${item.url}-${index}`}
+                href={item.url}
+                aria-label={`rede-social-${index}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icone nome={iconName} />
+              </a>
+            );
+          })}
         </div>
       </aside>
     </>

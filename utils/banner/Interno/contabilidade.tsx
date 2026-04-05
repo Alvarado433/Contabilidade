@@ -1,17 +1,9 @@
 'use client';
 
+import { ContabilidadeBannerProps } from "@/Dados/Interfaces/banner";
 import { FaCheckCircle } from "react-icons/fa";
 
-type BannerContabilidade = {
-  titulo: string;
-  subtitulo: string;
-  descricao: string;
-  beneficios: string[];
-};
 
-type ContabilidadeBannerProps = {
-  banner: BannerContabilidade;
-};
 
 export default function ContabilidadeBanner({
   banner,

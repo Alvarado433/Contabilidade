@@ -27,3 +27,9 @@ export type BannerEmpresaData = {
     };
   };
 };
+
+
+
+export type ContabilidadeBannerProps = {
+  banner: BannerContabilidadeData;
+};

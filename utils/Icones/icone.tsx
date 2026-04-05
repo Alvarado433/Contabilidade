@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import {
@@ -33,6 +33,9 @@ import {
   FaChevronUp,
   FaTimes,
   FaWhatsapp,
+  FaBlog,
+  FaInfoCircle,
+  FaHandshake,
   FaBuilding as FaBuildingColumns,
 } from "react-icons/fa";
 
@@ -70,14 +73,19 @@ const iconMap: Record<string, React.ReactNode> = {
   "fa-solid fa-building-columns": <FaBuildingColumns />,
   "fa-solid fa-university": <FaUniversity />,
 
-  // Navbar
+  // navbar
   "fa-solid fa-bars": <FaBars />,
   "fa-solid fa-chevron-down": <FaChevronDown />,
   "fa-solid fa-chevron-up": <FaChevronUp />,
   "fa-solid fa-xmark": <FaTimes />,
 
-  // Social
+  // social
   "bi bi-whatsapp": <FaWhatsapp />,
+
+  // extras para menu
+  "fa-solid fa-blog": <FaBlog />,
+  "fa-solid fa-circle-info": <FaInfoCircle />,
+  "fa-solid fa-handshake": <FaHandshake />,
 };
 
 export default function Icone({ nome, className }: Props) {

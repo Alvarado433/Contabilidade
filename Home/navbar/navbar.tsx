@@ -3,17 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import {
-  FaBars,
-  FaChevronDown,
-  FaChevronUp,
-  FaTimes,
-} from "react-icons/fa";
 import Icone from "@/utils/Icones/icone";
 
 type ItemMenu = {
   titulo: string;
   url: string;
+  icone?: string;
   filhos?: ItemMenu[];
 };
 
@@ -101,6 +96,11 @@ export default function Navbar({
     }
   };
 
+  const abrirLinkExterno = (url: string) => {
+    if (!url) return;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   const getSocialIconName = (url: string) => {
     if (url.includes("wa.me") || url.includes("whatsapp")) {
       return "bi bi-whatsapp";
@@ -116,6 +116,42 @@ export default function Navbar({
 
     if (url.includes("linkedin")) {
       return "fa-brands fa-linkedin-in";
+    }
+
+    return "";
+  };
+
+  const getItemIconName = (item: ItemMenu) => {
+    if (item.icone) return item.icone;
+
+    const titulo = item.titulo.toLowerCase().trim();
+
+    if (titulo.includes("início") || titulo.includes("inicio")) {
+      return "fa-solid fa-house";
+    }
+
+    if (titulo.includes("serviço") || titulo.includes("servico")) {
+      return "fa-solid fa-briefcase";
+    }
+
+    if (titulo.includes("ação") || titulo.includes("acao")) {
+      return "fa-solid fa-users";
+    }
+
+    if (titulo.includes("sobre")) {
+      return "fa-solid fa-circle-info";
+    }
+
+    if (titulo.includes("blog")) {
+      return "fa-solid fa-blog";
+    }
+
+    if (titulo.includes("contato")) {
+      return "fa-solid fa-envelope";
+    }
+
+    if (titulo.includes("consultoria")) {
+      return "fa-solid fa-handshake";
     }
 
     return "";
@@ -157,7 +193,7 @@ export default function Navbar({
               onClick={() => setMenuMobileAberto(true)}
               aria-label="Abrir menu"
             >
-              <FaBars />
+              <Icone nome="fa-solid fa-bars" className="navbar-icon" />
             </button>
           </div>
 
@@ -173,8 +209,10 @@ export default function Navbar({
           </button>
 
           <nav className="menu-central">
-            {itens.map((item) =>
-              item.filhos && item.filhos.length > 0 ? (
+            {itens.map((item) => {
+              const itemIcone = getItemIconName(item);
+
+              return item.filhos && item.filhos.length > 0 ? (
                 <div
                   key={item.titulo}
                   className="dropdown"
@@ -182,8 +220,21 @@ export default function Navbar({
                   onMouseLeave={() => setDropdownAberto(null)}
                 >
                   <button type="button" className="menu-item menu-btn-reset">
-                    <span>{item.titulo}</span>
-                    <FaChevronDown size={12} />
+                    <span className="menu-item-content">
+                      {itemIcone ? (
+                        <Icone
+                          nome={itemIcone}
+                          className="navbar-icon navbar-icon-sm"
+                        />
+                      ) : null}
+
+                      <span>{item.titulo}</span>
+
+                      <Icone
+                        nome="fa-solid fa-chevron-down"
+                        className="navbar-icon navbar-icon-xs"
+                      />
+                    </span>
                   </button>
 
                   <div
@@ -191,21 +242,33 @@ export default function Navbar({
                       dropdownAberto === item.titulo ? "show" : ""
                     }`}
                   >
-                    {item.filhos.map((filho) => (
-                      <button
-                        key={filho.titulo}
-                        type="button"
-                        className="dropdown-item dropdown-btn-reset"
-                        onClick={() =>
-                          navegarComToast(
-                            filho.url,
-                            `Abrindo ${filho.titulo}...`
-                          )
-                        }
-                      >
-                        {filho.titulo}
-                      </button>
-                    ))}
+                    {item.filhos.map((filho) => {
+                      const filhoIcone = getItemIconName(filho);
+
+                      return (
+                        <button
+                          key={filho.titulo}
+                          type="button"
+                          className="dropdown-item dropdown-btn-reset"
+                          onClick={() =>
+                            navegarComToast(
+                              filho.url,
+                              `Abrindo ${filho.titulo}...`
+                            )
+                          }
+                        >
+                          <span className="menu-item-content">
+                            {filhoIcone ? (
+                              <Icone
+                                nome={filhoIcone}
+                                className="navbar-icon navbar-icon-sm"
+                              />
+                            ) : null}
+                            <span>{filho.titulo}</span>
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               ) : (
@@ -217,10 +280,18 @@ export default function Navbar({
                     navegarComToast(item.url, `Abrindo ${item.titulo}...`)
                   }
                 >
-                  {item.titulo}
+                  <span className="menu-item-content">
+                    {itemIcone ? (
+                      <Icone
+                        nome={itemIcone}
+                        className="navbar-icon navbar-icon-sm"
+                      />
+                    ) : null}
+                    <span>{item.titulo}</span>
+                  </span>
                 </button>
-              )
-            )}
+              );
+            })}
           </nav>
 
           <div className="navbar-right">
@@ -234,7 +305,16 @@ export default function Navbar({
                 )
               }
             >
-              {botaoDireito.titulo}
+              <span className="menu-item-content">
+                <Icone
+                  nome={getItemIconName({
+                    titulo: botaoDireito.titulo,
+                    url: botaoDireito.url,
+                  })}
+                  className="navbar-icon navbar-icon-sm"
+                />
+                <span>{botaoDireito.titulo}</span>
+              </span>
             </button>
           </div>
         </div>
@@ -258,24 +338,41 @@ export default function Navbar({
             onClick={fecharSidebar}
             aria-label="Fechar menu"
           >
-            <FaTimes />
+            <Icone nome="fa-solid fa-xmark" className="navbar-icon" />
           </button>
         </div>
 
         <nav className="sidebar-nav">
-          {itens.map((item) =>
-            item.filhos && item.filhos.length > 0 ? (
+          {itens.map((item) => {
+            const itemIcone = getItemIconName(item);
+
+            return item.filhos && item.filhos.length > 0 ? (
               <div key={item.titulo} className="sidebar-group">
                 <button
                   type="button"
                   className="sidebar-link sidebar-btn-reset"
                   onClick={() => toggleSubmenuMobile(item.titulo)}
                 >
-                  <span>{item.titulo}</span>
+                  <span className="menu-item-content">
+                    {itemIcone ? (
+                      <Icone
+                        nome={itemIcone}
+                        className="navbar-icon navbar-icon-sm"
+                      />
+                    ) : null}
+                    <span>{item.titulo}</span>
+                  </span>
+
                   {submenuMobileAberto === item.titulo ? (
-                    <FaChevronUp size={14} />
+                    <Icone
+                      nome="fa-solid fa-chevron-up"
+                      className="navbar-icon navbar-icon-xs"
+                    />
                   ) : (
-                    <FaChevronDown size={14} />
+                    <Icone
+                      nome="fa-solid fa-chevron-down"
+                      className="navbar-icon navbar-icon-xs"
+                    />
                   )}
                 </button>
 
@@ -284,22 +381,34 @@ export default function Navbar({
                     submenuMobileAberto === item.titulo ? "open" : ""
                   }`}
                 >
-                  {item.filhos.map((filho) => (
-                    <button
-                      key={filho.titulo}
-                      type="button"
-                      className="sidebar-sublink sidebar-sublink-btn"
-                      onClick={() =>
-                        navegarComToast(
-                          filho.url,
-                          `Abrindo ${filho.titulo}...`,
-                          true
-                        )
-                      }
-                    >
-                      {filho.titulo}
-                    </button>
-                  ))}
+                  {item.filhos.map((filho) => {
+                    const filhoIcone = getItemIconName(filho);
+
+                    return (
+                      <button
+                        key={filho.titulo}
+                        type="button"
+                        className="sidebar-sublink sidebar-sublink-btn"
+                        onClick={() =>
+                          navegarComToast(
+                            filho.url,
+                            `Abrindo ${filho.titulo}...`,
+                            true
+                          )
+                        }
+                      >
+                        <span className="menu-item-content">
+                          {filhoIcone ? (
+                            <Icone
+                              nome={filhoIcone}
+                              className="navbar-icon navbar-icon-sm"
+                            />
+                          ) : null}
+                          <span>{filho.titulo}</span>
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             ) : (
@@ -311,10 +420,18 @@ export default function Navbar({
                   navegarComToast(item.url, `Abrindo ${item.titulo}...`, true)
                 }
               >
-                <span>{item.titulo}</span>
+                <span className="menu-item-content">
+                  {itemIcone ? (
+                    <Icone
+                      nome={itemIcone}
+                      className="navbar-icon navbar-icon-sm"
+                    />
+                  ) : null}
+                  <span>{item.titulo}</span>
+                </span>
               </button>
-            )
-          )}
+            );
+          })}
 
           <button
             type="button"
@@ -327,7 +444,16 @@ export default function Navbar({
               )
             }
           >
-            {botaoDireito.titulo}
+            <span className="menu-item-content">
+              <Icone
+                nome={getItemIconName({
+                  titulo: botaoDireito.titulo,
+                  url: botaoDireito.url,
+                })}
+                className="navbar-icon navbar-icon-sm"
+              />
+              <span>{botaoDireito.titulo}</span>
+            </span>
           </button>
         </nav>
 
@@ -335,16 +461,18 @@ export default function Navbar({
           {social.map((item, index) => {
             const iconName = getSocialIconName(item.url);
 
+            if (!iconName) return null;
+
             return (
-              <a
+              <button
                 key={`${item.url}-${index}`}
-                href={item.url}
+                type="button"
+                className="social-btn"
                 aria-label={`rede-social-${index}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => abrirLinkExterno(item.url)}
               >
-                <Icone nome={iconName} />
-              </a>
+                <Icone nome={iconName} className="navbar-icon social-icon" />
+              </button>
             );
           })}
         </div>

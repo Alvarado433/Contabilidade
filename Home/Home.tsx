@@ -6,8 +6,12 @@ import Footer from "./footer/footer";
 import Banner from "./Banner/page";
 import RenderServicos from "./servicos/RenderServicos";
 
+
 import footerData from "@/Dados/Footer/footerdata";
 import bannerData from "@/Dados/Banner/banner";
+import EspecialistaDestaque from "./Destaque/page";
+import bannerDestaque from "@/Dados/Banner/Bannerdestaque";
+
 
 export default function Home() {
   return (
@@ -26,6 +30,8 @@ export default function Home() {
       />
 
       <Banner banner={bannerData.banner} />
+
+      <EspecialistaDestaque banner={bannerDestaque} />
 
       <RenderServicos servicos={dados.renderServicos} />
 

@@ -11,6 +11,32 @@ import BannerFolhaInterno from "@/utils/banner/Interno/BannerFolhaInterno";
 import Icone from "@/utils/Icones/icone";
 import { getFolhaChartData } from "@/Dados/functions/folha";
 
+type ResumoItem = {
+  numero: string;
+  texto: string;
+};
+
+type GraficoValorMes = {
+  mes: string;
+  valor: number;
+};
+
+type GraficoValorAno = {
+  ano: string;
+  valor: number;
+};
+
+type GraficoNomeValor = {
+  nome: string;
+  valor: number;
+};
+
+type CardItem = {
+  icone: string;
+  titulo: string;
+  descricao: string;
+};
+
 export default function FolhaPage() {
   const folha = folhaData.folhaPagamento;
 
@@ -25,7 +51,11 @@ export default function FolhaPage() {
 
   return (
     <>
-      <Topo {...dados.topo} />
+      <Topo
+        email={dados.topo.email}
+        telefone={dados.topo.telefone}
+        whatsapp={dados.topo.whatsapp}
+      />
 
       <Navbar
         logo={dados.menu.logo}
@@ -34,7 +64,10 @@ export default function FolhaPage() {
         social={dados.rodape.social}
       />
 
-      <main style={{ background: folha.estilo.fundo }}>
+      <main
+        className="folha-page"
+        style={{ background: folha.estilo.fundo }}
+      >
         <BannerFolhaInterno
           titulo={folha.titulo}
           descricao={folha.descricao}
@@ -42,195 +75,650 @@ export default function FolhaPage() {
           gradiente={folha.estilo.gradiente}
         />
 
-        {/* 🔥 BENEFÍCIOS */}
         <section className="secao">
           <div className="container">
-            <h2 className="secao-titulo">Benefícios</h2>
+            <h2 className="secao-titulo">
+              <Icone
+                nome="fa-solid fa-building-columns"
+                className="titulo-icone"
+              />
+              Panorama Contábil
+            </h2>
 
-            <div className="lista-beneficios">
-              {folha.beneficios.map((item, index) => (
-                <div key={index} className="beneficio">
-                  <Icone nome="fa-solid fa-check" />
-                  <span>{item}</span>
-                </div>
+            <div className="resumo-grid">
+              {folha.indicadoresResumo.map((item: ResumoItem, index: number) => (
+                <article className="resumo-card" key={index}>
+                  <strong>{item.numero}</strong>
+                  <span>{item.texto}</span>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 🔥 SERVIÇOS INCLUSOS */}
         <section className="secao">
           <div className="container">
-            <h2 className="secao-titulo">Serviços Inclusos</h2>
-
-            <div className="cards-grid">
-              {folha.servicosInclusos.map((item, index) => (
-                <div className="info-card" key={index}>
-                  <Icone nome={item.icone} />
-                  <h3>{item.titulo}</h3>
-                  <p>{item.descricao}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 🔥 GRÁFICOS */}
-        <section className="secao">
-          <div className="container">
-            <h2 className="secao-titulo">Indicadores</h2>
+            <h2 className="secao-titulo">
+              <Icone nome="fa-solid fa-chart-line" className="titulo-icone" />
+              Indicadores Contábeis Inteligentes
+            </h2>
 
             <div className="graficos-grid">
-              <div className="grafico-card">
-                <h3>Faturamento</h3>
+              <article className="grafico-card">
+                <h3>Faturamento Mensal</h3>
                 <div className="bars-chart">
-                  {folha.indicadoresGraficos.faturamentoMensal.map((item, i) => (
-                    <div key={i} className="bar-col">
-                      <div
-                        className="bar"
-                        style={{
-                          height: `${(item.valor / maxFaturamento) * 120}px`,
-                        }}
-                      />
-                      <span>{item.mes}</span>
-                    </div>
-                  ))}
+                  {folha.indicadoresGraficos.faturamentoMensal.map(
+                    (item: GraficoValorMes, index: number) => (
+                      <div className="bar-col" key={index}>
+                        <div
+                          className="bar"
+                          style={{
+                            height: `${(item.valor / maxFaturamento) * 120}px`,
+                          }}
+                        />
+                        <span>{item.mes}</span>
+                      </div>
+                    )
+                  )}
                 </div>
-              </div>
+              </article>
 
-              <div className="grafico-card">
-                <h3>Custos</h3>
-                <div
-                  className="donut-chart"
-                  style={{ background: `conic-gradient(${donutStops})` }}
-                />
-              </div>
+              <article className="grafico-card">
+                <h3>Distribuição de Custos</h3>
+                <div className="donut-wrap">
+                  <div
+                    className="donut-chart"
+                    style={{
+                      background: `conic-gradient(${donutStops})`,
+                    }}
+                  >
+                    <div className="donut-hole" />
+                  </div>
 
-              <div className="grafico-card">
-                <h3>Evolução</h3>
-                <svg viewBox="0 0 260 160">
-                  <polyline
-                    fill="none"
-                    stroke="#16c784"
-                    strokeWidth="4"
-                    points={linePoints}
-                  />
-                </svg>
-              </div>
+                  <div className="legenda">
+                    {folha.indicadoresGraficos.distribuicaoCustos.map(
+                      (item: GraficoNomeValor, index: number) => (
+                        <div className="legenda-item" key={index}>
+                          <span
+                            className="legenda-cor"
+                            style={{
+                              background: donutColors[index % donutColors.length],
+                            }}
+                          />
+                          <small>{item.nome}</small>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+              </article>
 
-              <div className="grafico-card">
-                <h3>Setores</h3>
-                <svg viewBox="0 0 220 220">
-                  <polygon
-                    points={radarPoints}
-                    fill="rgba(30,99,219,0.2)"
-                    stroke="#1e63db"
-                  />
-                </svg>
-              </div>
+              <article className="grafico-card">
+                <h3>Evolução da Folha</h3>
+                <div className="line-chart">
+                  <svg viewBox="0 0 260 160" className="line-svg">
+                    <polyline
+                      fill="none"
+                      stroke="#16c784"
+                      strokeWidth="4"
+                      points={linePoints}
+                    />
+
+                    {lineCircles.map(
+                      (
+                        point: { index: number; x: number; y: number }
+                      ) => (
+                        <circle
+                          key={point.index}
+                          cx={point.x}
+                          cy={point.y}
+                          r="4"
+                          fill="#16c784"
+                        />
+                      )
+                    )}
+                  </svg>
+
+                  <div className="line-labels">
+                    {folha.indicadoresGraficos.evolucaoFolha.map(
+                      (item: GraficoValorAno, index: number) => (
+                        <span key={index}>{item.ano}</span>
+                      )
+                    )}
+                  </div>
+                </div>
+              </article>
+
+              <article className="grafico-card">
+                <h3>Desempenho por Setor</h3>
+                <div className="radar-wrap">
+                  <svg viewBox="0 0 220 220" className="radar-svg">
+                    <circle cx="110" cy="110" r="70" fill="none" stroke="#d7e3fb" />
+                    <circle cx="110" cy="110" r="50" fill="none" stroke="#d7e3fb" />
+                    <circle cx="110" cy="110" r="30" fill="none" stroke="#d7e3fb" />
+
+                    <polygon
+                      points={radarPoints}
+                      fill="rgba(30,99,219,0.20)"
+                      stroke="#1e63db"
+                      strokeWidth="3"
+                    />
+                  </svg>
+
+                  <div className="radar-labels">
+                    {folha.indicadoresGraficos.desempenhoSetor.map(
+                      (item: GraficoNomeValor, index: number) => (
+                        <span key={index}>{item.nome}</span>
+                      )
+                    )}
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
         </section>
 
-        {/* 🔥 DIFERENCIAIS */}
-        <section className="secao">
-          <div className="container">
-            <h2 className="secao-titulo">Diferenciais</h2>
+        {folha.beneficios && folha.beneficios.length > 0 && (
+          <section className="secao">
+            <div className="container">
+              <h2 className="secao-titulo">
+                <Icone nome="fa-solid fa-shield-halved" className="titulo-icone" />
+                Benefícios da Gestão de Folha
+              </h2>
 
-            <div className="cards-grid">
-              {folha.diferenciais.map((item, index) => (
-                <div className="info-card" key={index}>
-                  <Icone nome={item.icone} />
+              <div className="beneficios-grid">
+                {folha.beneficios.map((item: string, index: number) => (
+                  <article className="beneficio-card" key={index}>
+                    <div className="beneficio-check">
+                      <span>✓</span>
+                    </div>
+                    <p>{item}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {folha.servicosInclusos && folha.servicosInclusos.length > 0 && (
+          <section className="secao">
+            <div className="container">
+              <h2 className="secao-titulo">
+                <Icone nome="fa-solid fa-file-invoice-dollar" className="titulo-icone" />
+                Serviços Inclusos
+              </h2>
+
+              <div className="cards-grid">
+                {folha.servicosInclusos.map((item: CardItem, index: number) => (
+                  <article className="info-card" key={index}>
+                    <div className="info-icone">
+                      <Icone nome={item.icone} />
+                    </div>
+                    <h3>{item.titulo}</h3>
+                    <p>{item.descricao}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {folha.diferenciais && folha.diferenciais.length > 0 && (
+          <section className="secao">
+            <div className="container">
+              <h2 className="secao-titulo">
+                <Icone nome="fa-solid fa-star" className="titulo-icone" />
+                Diferenciais
+              </h2>
+
+              <div className="cards-grid">
+                {folha.diferenciais.map((item: CardItem, index: number) => (
+                  <article className="info-card" key={index}>
+                    <div className="info-icone">
+                      <Icone nome={item.icone} />
+                    </div>
+                    <h3>{item.titulo}</h3>
+                    <p>{item.descricao}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        <section className="secao secao-final">
+          <div className="container">
+            <h2 className="secao-titulo centralizado">
+              <Icone nome="fa-solid fa-star" className="titulo-icone" />
+              {folha.motivos.titulo}
+            </h2>
+
+            <div className="cards-grid motivos-grid">
+              {folha.motivos.itens.map((item: CardItem, index: number) => (
+                <article className="info-card pequeno" key={index}>
+                  <div className="info-icone">
+                    <Icone nome={item.icone} />
+                  </div>
                   <h3>{item.titulo}</h3>
                   <p>{item.descricao}</p>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 🔥 CTA FINAL */}
-        <section className="cta">
-          <h2>{folha.cta.titulo}</h2>
-          <p>{folha.cta.descricao}</p>
-          <a href={folha.cta.botao.url}>
-            {folha.cta.botao.texto}
-          </a>
-        </section>
+        {folha.cta && (
+          <section className="cta-section">
+            <div className="container">
+              <div className="cta-box">
+                <h2>{folha.cta.titulo}</h2>
+                <p>{folha.cta.descricao}</p>
+                <a href={folha.cta.botao.url} className="cta-botao">
+                  {folha.cta.botao.texto}
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
       </main>
 
       <Footer data={footerData} />
 
       <style jsx>{`
+        .folha-page {
+          min-height: 100vh;
+          padding-bottom: 10px;
+        }
+
         .container {
-          max-width: 1200px;
-          margin: auto;
-          padding: 20px;
+          max-width: 1180px;
+          margin: 0 auto;
+          padding: 0 20px;
         }
 
         .secao {
-          padding: 40px 0;
+          padding: 26px 0 8px;
+        }
+
+        .secao-final {
+          padding-bottom: 40px;
         }
 
         .secao-titulo {
-          text-align: center;
-          margin-bottom: 20px;
-          font-size: 1.8rem;
-        }
-
-        .lista-beneficios {
-          display: grid;
-          gap: 10px;
-        }
-
-        .beneficio {
           display: flex;
+          align-items: center;
+          justify-content: center;
           gap: 10px;
-        }
-
-        .cards-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
-        }
-
-        .info-card {
-          padding: 20px;
-          background: #fff;
-          border-radius: 12px;
+          margin: 0 0 26px;
+          color: ${folha.estilo.tituloSecao};
+          font-size: 2rem;
+          font-weight: 800;
           text-align: center;
+        }
+
+        .centralizado {
+          justify-content: center;
+        }
+
+        .titulo-icone {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.4rem;
+        }
+
+        .resumo-grid {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 18px;
+        }
+
+        .resumo-card,
+        .grafico-card,
+        .info-card,
+        .beneficio-card {
+          background: #ffffff;
+          border-radius: 18px;
+          box-shadow: ${folha.estilo.sombra};
+          border: 1px solid rgba(20, 80, 200, 0.06);
+        }
+
+        .resumo-card {
+          padding: 22px 18px;
+          text-align: center;
+        }
+
+        .resumo-card strong {
+          display: block;
+          font-size: 2rem;
+          line-height: 1.1;
+          color: ${folha.estilo.tituloSecao};
+          margin-bottom: 8px;
+        }
+
+        .resumo-card span {
+          display: block;
+          font-size: 0.92rem;
+          color: #596780;
+          line-height: 1.45;
         }
 
         .graficos-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 18px;
+          align-items: start;
         }
 
         .grafico-card {
-          background: white;
-          padding: 20px;
-          border-radius: 12px;
+          padding: 18px 16px;
+          min-height: 290px;
+        }
+
+        .grafico-card h3 {
+          margin: 0 0 16px;
+          color: ${folha.estilo.tituloSecao};
+          text-align: center;
+          font-size: 1.35rem;
+          line-height: 1.3;
+          font-weight: 800;
+        }
+
+        .bars-chart {
+          height: 180px;
+          display: flex;
+          align-items: end;
+          justify-content: space-between;
+          gap: 10px;
+          padding: 10px 8px 0;
+        }
+
+        .bar-col {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          flex: 1;
         }
 
         .bar {
-          width: 20px;
-          background: blue;
+          width: 100%;
+          max-width: 24px;
+          border-radius: 8px 8px 0 0;
+          background: linear-gradient(180deg, #7fa7ff 0%, #4a74d9 100%);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
         }
 
-        .cta {
+        .bar-col span {
+          font-size: 0.7rem;
+          color: #6a7892;
+        }
+
+        .donut-wrap {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 18px;
+          padding-top: 8px;
+        }
+
+        .donut-chart {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .donut-hole {
+          width: 78px;
+          height: 78px;
+          border-radius: 50%;
+          background: #ffffff;
+        }
+
+        .legenda {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 10px 14px;
+        }
+
+        .legenda-item {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .legenda-cor {
+          width: 12px;
+          height: 12px;
+          border-radius: 3px;
+        }
+
+        .legenda-item small {
+          color: #64748b;
+          font-size: 0.72rem;
+        }
+
+        .line-chart {
+          padding-top: 8px;
+        }
+
+        .line-svg {
+          width: 100%;
+          height: 170px;
+        }
+
+        .line-labels {
+          display: flex;
+          justify-content: space-between;
+          padding: 0 8px;
+          color: #6b7890;
+          font-size: 0.72rem;
+        }
+
+        .radar-wrap {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          padding-top: 6px;
+        }
+
+        .radar-svg {
+          width: 180px;
+          height: 180px;
+        }
+
+        .radar-labels {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 6px 14px;
+          width: 100%;
           text-align: center;
-          padding: 50px;
-          background: #0d3f86;
-          color: white;
         }
 
-        .cta a {
-          background: #00c853;
-          padding: 12px 20px;
-          border-radius: 8px;
-          display: inline-block;
-          margin-top: 10px;
+        .radar-labels span {
+          font-size: 0.72rem;
+          color: #6b7890;
+        }
+
+        .beneficios-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px;
+        }
+
+        .beneficio-card {
+          padding: 18px 16px;
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        .beneficio-check {
+          width: 28px;
+          height: 28px;
+          min-width: 28px;
+          border-radius: 50%;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: ${folha.estilo.destaque};
+          color: #ffffff;
+          font-size: 0.9rem;
+          font-weight: 800;
+        }
+
+        .beneficio-card p {
+          margin: 0;
+          color: #64748b;
+          font-size: 0.95rem;
+          line-height: 1.6;
+        }
+
+        .cards-grid {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 18px;
+        }
+
+        .info-card {
+          padding: 22px 18px;
+          text-align: center;
+        }
+
+        .info-card.pequeno {
+          padding: 20px 16px;
+        }
+
+        .info-icone {
+          width: 46px;
+          height: 46px;
+          margin: 0 auto 14px;
+          border-radius: 14px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(20, 80, 200, 0.08);
+          color: ${folha.estilo.tituloSecao};
+          font-size: 1.2rem;
+        }
+
+        .info-card h3 {
+          margin: 0 0 10px;
+          color: ${folha.estilo.tituloSecao};
+          font-size: 1rem;
+          line-height: 1.35;
+          font-weight: 800;
+        }
+
+        .info-card p {
+          margin: 0;
+          color: #64748b;
+          font-size: 0.84rem;
+          line-height: 1.55;
+        }
+
+        .motivos-grid {
+          margin-top: 6px;
+        }
+
+        .cta-section {
+          padding: 26px 0 46px;
+        }
+
+        .cta-box {
+          background: linear-gradient(135deg, #0d3f86 0%, #1e88ff 100%);
+          border-radius: 22px;
+          padding: 36px 28px;
+          text-align: center;
+          color: #ffffff;
+          box-shadow: ${folha.estilo.sombra};
+        }
+
+        .cta-box h2 {
+          margin: 0 0 12px;
+          font-size: 2rem;
+          line-height: 1.2;
+          font-weight: 800;
+        }
+
+        .cta-box p {
+          max-width: 760px;
+          margin: 0 auto 18px;
+          font-size: 1rem;
+          line-height: 1.7;
+          color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-botao {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 48px;
+          padding: 0 22px;
+          border-radius: 12px;
+          background: ${folha.estilo.destaque};
+          color: #ffffff;
+          text-decoration: none;
+          font-size: 0.95rem;
+          font-weight: 700;
+          transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .cta-botao:hover {
+          transform: translateY(-2px);
+          filter: brightness(1.05);
+        }
+
+        @media (max-width: 1100px) {
+          .resumo-grid,
+          .cards-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          .graficos-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          .beneficios-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .secao-titulo {
+            font-size: 1.5rem;
+          }
+
+          .resumo-grid,
+          .graficos-grid,
+          .cards-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .grafico-card {
+            min-height: auto;
+          }
+
+          .resumo-card strong {
+            font-size: 1.75rem;
+          }
+
+          .cta-box {
+            padding: 28px 18px;
+          }
+
+          .cta-box h2 {
+            font-size: 1.55rem;
+          }
+
+          .cta-box p {
+            font-size: 0.94rem;
+          }
         }
       `}</style>
     </>

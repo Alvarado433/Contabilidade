@@ -31,12 +31,13 @@ export default function Home() {
 
       <Banner banner={bannerData.banner} />
 
-      <Carrossel />
+      
 
       <RenderServicos servicos={dados.renderServicos} />
 
       <EspecialistaDestaque banner={bannerDestaque} />
-
+      
+      <Carrossel />
       <Footer data={footerData} />
     </>
   );

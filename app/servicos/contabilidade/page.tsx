@@ -1,10 +1,14 @@
+import { BannerContabilidadeData } from "@/Dados/Interfaces/banner";
 import dados from "@/Dados/site";
 import Navbar from "@/Home/navbar/navbar";
 import Topo from "@/Home/Topbar/topo";
 import ContabilidadeBanner from "@/utils/banner/Interno/contabilidade";
 
 
+
 export default function Contabilidade() {
+  const banner = dados.bannerContabilidade as BannerContabilidadeData;
+
   return (
     <>
       <Topo
@@ -21,7 +25,7 @@ export default function Contabilidade() {
       />
 
       <main className="abertura-page">
-        <ContabilidadeBanner banner={dados.bannerContabilidade} />
+        <ContabilidadeBanner banner={banner} />
       </main>
     </>
   );

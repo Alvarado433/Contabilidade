@@ -1,13 +1,14 @@
+import bannerData from "@/Dados/Banner/banner";
 import { BannerContabilidadeData } from "@/Dados/Interfaces/banner";
 import dados from "@/Dados/site";
+
+
 import Navbar from "@/Home/navbar/navbar";
 import Topo from "@/Home/Topbar/topo";
 import ContabilidadeBanner from "@/utils/banner/Interno/contabilidade";
 
-
-
 export default function Contabilidade() {
-  const banner = dados.bannerContabilidade as BannerContabilidadeData;
+  const banner = bannerData.bannerContabilidade as BannerContabilidadeData;
 
   return (
     <>

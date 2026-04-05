@@ -2,67 +2,100 @@ const fiscalData = {
   fiscal: {
     badge: "Gestão Fiscal Inteligente",
 
-    titulo: "Precisão tributária com tecnologia e automação",
+    titulo: "Precisão tributária com tecnologia, transparência e automação",
 
     subtitulo:
-      "Controle fiscal completo, redução de custos e conformidade com as legislações atuais.",
+      "Controle tributário completo, emissão automatizada e conformidade garantida com as legislações atuais.",
 
     descricao:
-      "Oferecemos gestão fiscal completa com automação, análise inteligente e total conformidade com SPED, garantindo segurança, economia e eficiência para sua empresa.",
+      "A Visacont oferece uma gestão fiscal estratégica para empresas que precisam reduzir riscos, aumentar previsibilidade e manter conformidade com as obrigações acessórias. Automatizamos rotinas, revisamos apurações e entregamos inteligência fiscal para apoiar decisões mais seguras.",
 
     destaque:
-      "↓ 22% custos fiscais • 32% + rápido no fechamento • Auditoria 24/7",
+      "↓ 22% custos fiscais • 32% mais rapidez no fechamento • LGPD + SPED compliant • Auditoria 24/7",
 
     icone: "fa-solid fa-chart-pie",
 
     estilo: {
       fundo: "#f4f7fb",
-      gradiente: "linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)",
+      gradiente: "linear-gradient(135deg, #0d3f86 0%, #1e88ff 100%)",
       destaque: "#00c853",
       tituloSecao: "#0d3f86",
       sombra: "0 15px 40px rgba(0,0,0,0.08)",
     },
 
-    // 🔥 SETORES
+    metricasResumo: [
+      {
+        numero: "100%",
+        texto: "conformidade com as rotinas fiscais críticas",
+      },
+      {
+        numero: "24/7",
+        texto: "monitoramento de obrigações e auditoria preventiva",
+      },
+      {
+        numero: "32%",
+        texto: "maior agilidade no fechamento fiscal",
+      },
+      {
+        numero: "↓ 22%",
+        texto: "redução média de custos após revisão tributária",
+      },
+    ],
+
+    clientesExemplo: [
+      "Alfa Indústria",
+      "Beta Log",
+      "Gamma Tech",
+      "Delta Saúde",
+      "Omega Retail",
+    ],
+
     setores: [
       {
         nome: "Indústria",
         descricao:
-          "Gestão de créditos ICMS/IPI, controle de insumos e SPED Fiscal multi-filiais.",
+          "Gestão de créditos de ICMS/IPI, controle de insumos, SPED Fiscal e apurações multi-filiais.",
       },
       {
         nome: "Comércio",
         descricao:
-          "Conciliação de notas, PIS/COFINS e relatórios de margem.",
+          "Conciliação de notas, PIS/COFINS monofásico, regimes especiais e relatórios de margem.",
       },
       {
         nome: "Serviços",
         descricao:
-          "ISS por município, retenções e integração com contratos.",
+          "ISS por município, retenções (IRRF/INSS/CSRF) e integração com contratos recorrentes.",
       },
       {
         nome: "Tecnologia",
         descricao:
-          "Lei do Bem, SaaS e monitoramento fiscal em múltiplas regiões.",
+          "Incentivos, Lei do Bem, tributos sobre SaaS e monitoramento de receitas em múltiplas praças.",
       },
       {
         nome: "Saúde",
         descricao:
-          "Faturamento SUS/particular, glosas e compliance completo.",
+          "Faturamento SUS/particular, retenções específicas, glosas e compliance de prontuários.",
       },
     ],
 
-    // 🔥 FUNCIONALIDADES
     funcionalidades: [
-      "Apuração automatizada (federal, estadual e municipal)",
-      "Planejamento tributário com simulação de cenários",
-      "Conciliação automática de notas fiscais",
+      "Apuração automatizada de tributos federais, estaduais e municipais",
+      "Planejamento tributário por cenários e simulações",
+      "Conciliação de notas fiscais com cruzamentos SPED",
       "Integração com eSocial, DCTFWeb e EFD-Reinf",
-      "Relatórios e dashboards em tempo real",
+      "Relatórios gerenciais e dashboards em tempo real",
       "Alertas de vencimentos e auditoria preventiva",
     ],
 
-    // 🔥 GRÁFICOS (você pode reutilizar sua lógica)
+    entregaveis: [
+      "Mapa de obrigações mensais e calendário fiscal",
+      "Painel de apuração e conferência de impostos",
+      "Relatórios de créditos, compensações e oportunidades",
+      "Controle de retenções e documentos fiscais",
+      "Visão consolidada por filial, unidade ou centro de custo",
+      "Histórico versionado de alterações e auditorias",
+    ],
+
     indicadoresGraficos: {
       distribuicaoTributos: [
         { nome: "ICMS", valor: 40 },
@@ -78,9 +111,15 @@ const fiscalData = {
         { mes: "Out", valor: 6.4 },
         { mes: "Nov", valor: 7.9 },
       ],
+
+      produtividadeTime: [
+        { nome: "Apuração", valor: 88 },
+        { nome: "Conciliação", valor: 91 },
+        { nome: "Compliance", valor: 96 },
+        { nome: "Auditoria", valor: 84 },
+      ],
     },
 
-    // 🔥 RELATÓRIO (TABELA)
     relatorios: [
       {
         mes: "Julho",
@@ -119,39 +158,95 @@ const fiscalData = {
       },
     ],
 
-    // 🔥 REGIMES
     regimes: [
       {
         nome: "Simples Nacional",
         indicado: "ME/EPP",
-        vantagem: "Menos burocracia",
-        atencao: "Limites de faturamento",
+        vantagem: "Unifica tributos e reduz burocracia",
+        atencao: "Limites de receita e anexos variáveis",
       },
       {
         nome: "Lucro Presumido",
-        indicado: "Serviços",
-        vantagem: "Cálculo simplificado",
+        indicado: "Serviços com boas margens",
+        vantagem: "Base de cálculo simplificada",
         atencao: "Créditos limitados",
       },
       {
         nome: "Lucro Real",
         indicado: "Grandes empresas",
-        vantagem: "Maior economia tributária",
-        atencao: "Mais complexo",
+        vantagem: "Deduções e compensações amplas",
+        atencao: "Complexidade operacional",
       },
     ],
 
-    // 🔥 TECNOLOGIA
-    tecnologia: [
-      "Criptografia AES-256 e MFA",
-      "LGPD + auditoria completa",
-      "Integração com ERPs e bancos",
-      "Backups automáticos",
-      "Monitoramento 24/7",
-      "Assinatura digital",
+    diferenciais: [
+      {
+        titulo: "Automação Fiscal",
+        descricao:
+          "Redução de tarefas repetitivas com mais velocidade no fechamento.",
+        icone: "fa-solid fa-robot",
+      },
+      {
+        titulo: "Compliance Contínuo",
+        descricao:
+          "Monitoramento constante das obrigações e atualização legal.",
+        icone: "fa-solid fa-scale-balanced",
+      },
+      {
+        titulo: "Visão Gerencial",
+        descricao:
+          "Indicadores claros para decisões tributárias mais inteligentes.",
+        icone: "fa-solid fa-chart-line",
+      },
+      {
+        titulo: "Suporte Especializado",
+        descricao:
+          "Equipe preparada para contextos complexos e multioperações.",
+        icone: "fa-solid fa-headset",
+      },
     ],
 
-    // 🔥 NOVO (substitui depoimentos)
+    riscosEvitados: [
+      "Multas por atraso ou erro em obrigações acessórias",
+      "Pagamento indevido de tributos por apuração incorreta",
+      "Perda de créditos fiscais não aproveitados",
+      "Falhas de integração entre fiscal, financeiro e contábil",
+      "Inconsistências entre documentos, SPED e fechamento",
+      "Baixa visibilidade sobre exposição tributária da empresa",
+    ],
+
+    tecnologia: [
+      "Criptografia AES-256 e MFA",
+      "LGPD ready + trilhas de auditoria",
+      "APIs com ERPs e bancos",
+      "Backups automáticos e versionados",
+      "Monitoramento 24/7 de obrigações",
+      "Assinatura digital e registros imutáveis",
+    ],
+
+    faq: [
+      {
+        pergunta: "Como começo?",
+        resposta:
+          "Realizamos um diagnóstico inicial gratuito, avaliamos riscos, oportunidades e montamos um plano de implantação.",
+      },
+      {
+        pergunta: "Integra com meu ERP?",
+        resposta:
+          "Sim. Trabalhamos com integração via API e conectores para diferentes rotinas operacionais.",
+      },
+      {
+        pergunta: "Como são os relatórios?",
+        resposta:
+          "Você recebe painéis em tempo real, relatórios executivos e apoio analítico para tomada de decisão.",
+      },
+      {
+        pergunta: "Serve para mais de uma filial?",
+        resposta:
+          "Sim. A estrutura pode consolidar dados por empresa, filial, unidade e centro de custo.",
+      },
+    ],
+
     resultados: [
       {
         titulo: "Redução de Custos",
@@ -161,20 +256,19 @@ const fiscalData = {
       {
         titulo: "Agilidade",
         valor: "+32%",
-        descricao: "Fechamento mais rápido",
+        descricao: "Fechamento mais rápido e previsível",
       },
       {
         titulo: "Conformidade",
         valor: "100%",
-        descricao: "Aderente às obrigações legais",
+        descricao: "Cobertura das rotinas críticas monitoradas",
       },
     ],
 
-    // 🔥 CTA
     cta: {
-      titulo: "Pronto para evoluir sua gestão fiscal?",
+      titulo: "Pronto para elevar sua gestão fiscal?",
       descricao:
-        "Automatize processos, reduza custos e tenha total controle tributário.",
+        "Automatize rotinas, reduza custos e tenha total controle tributário com a Visacont Cloud.",
       botao: {
         texto: "Agendar Consultoria Gratuita",
         url: "/contato",

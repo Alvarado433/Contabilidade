@@ -36,6 +36,17 @@ type ResultadoItem = {
   descricao: string;
 };
 
+type DiferencialItem = {
+  titulo: string;
+  descricao: string;
+  icone: string;
+};
+
+type FaqItem = {
+  pergunta: string;
+  resposta: string;
+};
+
 export default function FiscalPage() {
   const fiscal = fiscalData.fiscal;
 
@@ -64,6 +75,44 @@ export default function FiscalPage() {
           icone={fiscal.icone}
           gradiente={fiscal.estilo.gradiente}
         />
+
+        {fiscal.metricasResumo && fiscal.metricasResumo.length > 0 && (
+          <section className="secao">
+            <div className="container">
+              <h2 className="secao-titulo">Indicadores Estratégicos</h2>
+
+              <div className="metricas-grid">
+                {fiscal.metricasResumo.map(
+                  (
+                    item: { numero: string; texto: string },
+                    index: number
+                  ) => (
+                    <article className="metrica-card" key={index}>
+                      <strong>{item.numero}</strong>
+                      <span>{item.texto}</span>
+                    </article>
+                  )
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {fiscal.clientesExemplo && fiscal.clientesExemplo.length > 0 && (
+          <section className="secao secao-compacta">
+            <div className="container">
+              <h2 className="secao-titulo">Empresas que se beneficiam deste modelo</h2>
+
+              <div className="clientes-grid">
+                {fiscal.clientesExemplo.map((item: string, index: number) => (
+                  <div className="cliente-chip" key={index}>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="secao">
           <div className="container">
@@ -94,6 +143,25 @@ export default function FiscalPage() {
             </div>
           </div>
         </section>
+
+        {fiscal.entregaveis && fiscal.entregaveis.length > 0 && (
+          <section className="secao">
+            <div className="container">
+              <h2 className="secao-titulo">Entregáveis</h2>
+
+              <div className="entregaveis-grid">
+                {fiscal.entregaveis.map((item: string, index: number) => (
+                  <article className="entregavel-card" key={index}>
+                    <div className="entregavel-icone">
+                      <Icone nome="fa-solid fa-file-invoice-dollar" />
+                    </div>
+                    <p>{item}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="secao">
           <div className="container">
@@ -167,6 +235,45 @@ export default function FiscalPage() {
           </div>
         </section>
 
+        {fiscal.diferenciais && fiscal.diferenciais.length > 0 && (
+          <section className="secao">
+            <div className="container">
+              <h2 className="secao-titulo">Diferenciais</h2>
+
+              <div className="diferenciais-grid">
+                {fiscal.diferenciais.map(
+                  (item: DiferencialItem, index: number) => (
+                    <article className="diferencial-card" key={index}>
+                      <div className="tech-icone">
+                        <Icone nome={item.icone} />
+                      </div>
+                      <h3>{item.titulo}</h3>
+                      <p>{item.descricao}</p>
+                    </article>
+                  )
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {fiscal.riscosEvitados && fiscal.riscosEvitados.length > 0 && (
+          <section className="secao">
+            <div className="container">
+              <h2 className="secao-titulo">Riscos Evitados</h2>
+
+              <div className="riscos-grid">
+                {fiscal.riscosEvitados.map((item: string, index: number) => (
+                  <article className="risco-card" key={index}>
+                    <div className="risco-icone">!</div>
+                    <p>{item}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         <section className="secao">
           <div className="container">
             <h2 className="secao-titulo">Tecnologia & Compliance</h2>
@@ -183,6 +290,23 @@ export default function FiscalPage() {
             </div>
           </div>
         </section>
+
+        {fiscal.faq && fiscal.faq.length > 0 && (
+          <section className="secao">
+            <div className="container">
+              <h2 className="secao-titulo">FAQ Rápido</h2>
+
+              <div className="faq-grid">
+                {fiscal.faq.map((item: FaqItem, index: number) => (
+                  <details className="faq-card" key={index} open={index === 0}>
+                    <summary>{item.pergunta}</summary>
+                    <p>{item.resposta}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="cta-section">
           <div className="container">
@@ -215,6 +339,10 @@ export default function FiscalPage() {
           padding: 26px 0 10px;
         }
 
+        .secao-compacta {
+          padding-top: 8px;
+        }
+
         .secao-titulo {
           margin: 0 0 22px;
           text-align: center;
@@ -224,13 +352,22 @@ export default function FiscalPage() {
           line-height: 1.2;
         }
 
+        .metricas-grid,
         .setores-grid,
         .funcionalidades-grid,
         .resultados-grid,
         .regimes-grid,
-        .tecnologia-grid {
+        .tecnologia-grid,
+        .entregaveis-grid,
+        .diferenciais-grid,
+        .riscos-grid,
+        .faq-grid {
           display: grid;
           gap: 18px;
+        }
+
+        .metricas-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
         }
 
         .setores-grid {
@@ -249,15 +386,41 @@ export default function FiscalPage() {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
-        .tecnologia-grid {
+        .tecnologia-grid,
+        .entregaveis-grid,
+        .diferenciais-grid,
+        .riscos-grid {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
+        .clientes-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          justify-content: center;
+        }
+
+        .cliente-chip {
+          background: #ffffff;
+          color: ${fiscal.estilo.tituloSecao};
+          border: 1px solid rgba(20, 80, 200, 0.08);
+          box-shadow: ${fiscal.estilo.sombra};
+          padding: 10px 14px;
+          border-radius: 999px;
+          font-size: 0.92rem;
+          font-weight: 700;
+        }
+
+        .metrica-card,
         .setor-card,
         .funcionalidade-card,
         .resultado-card,
         .regime-card,
-        .tecnologia-card {
+        .tecnologia-card,
+        .entregavel-card,
+        .diferencial-card,
+        .risco-card,
+        .faq-card {
           background: #ffffff;
           border-radius: 18px;
           padding: 22px 18px;
@@ -265,9 +428,29 @@ export default function FiscalPage() {
           border: 1px solid rgba(20, 80, 200, 0.06);
         }
 
+        .metrica-card {
+          text-align: center;
+        }
+
+        .metrica-card strong {
+          display: block;
+          margin-bottom: 8px;
+          color: ${fiscal.estilo.destaque};
+          font-size: 2rem;
+          line-height: 1.1;
+          font-weight: 900;
+        }
+
+        .metrica-card span {
+          color: #64748b;
+          font-size: 0.9rem;
+          line-height: 1.5;
+        }
+
         .setor-card h3,
         .resultado-card h3,
-        .regime-card h3 {
+        .regime-card h3,
+        .diferencial-card h3 {
           margin: 0 0 10px;
           color: ${fiscal.estilo.tituloSecao};
           font-size: 1.08rem;
@@ -278,7 +461,11 @@ export default function FiscalPage() {
         .setor-card p,
         .funcionalidade-card p,
         .resultado-card p,
-        .tecnologia-card p {
+        .tecnologia-card p,
+        .entregavel-card p,
+        .diferencial-card p,
+        .risco-card p,
+        .faq-card p {
           margin: 0;
           color: #64748b;
           font-size: 0.92rem;
@@ -303,6 +490,27 @@ export default function FiscalPage() {
           color: #ffffff;
           font-size: 0.9rem;
           font-weight: 800;
+        }
+
+        .entregavel-card,
+        .diferencial-card,
+        .tecnologia-card,
+        .risco-card {
+          text-align: center;
+        }
+
+        .entregavel-icone,
+        .tech-icone {
+          width: 44px;
+          height: 44px;
+          margin: 0 auto 12px;
+          border-radius: 14px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(20, 80, 200, 0.08);
+          color: ${fiscal.estilo.tituloSecao};
+          font-size: 1.15rem;
         }
 
         .resultado-card {
@@ -373,21 +581,29 @@ export default function FiscalPage() {
           color: ${fiscal.estilo.tituloSecao};
         }
 
-        .tecnologia-card {
-          text-align: center;
-        }
-
-        .tech-icone {
-          width: 44px;
-          height: 44px;
-          margin: 0 auto 12px;
-          border-radius: 14px;
+        .risco-icone {
+          width: 34px;
+          height: 34px;
+          margin: 0 auto 10px;
+          border-radius: 50%;
+          background: rgba(255, 77, 79, 0.12);
+          color: #d93025;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          background: rgba(20, 80, 200, 0.08);
+          font-weight: 800;
+        }
+
+        .faq-card summary {
+          cursor: pointer;
+          list-style: none;
+          font-weight: 800;
           color: ${fiscal.estilo.tituloSecao};
-          font-size: 1.15rem;
+          margin-bottom: 10px;
+        }
+
+        .faq-card summary::-webkit-details-marker {
+          display: none;
         }
 
         .cta-section {
@@ -439,13 +655,20 @@ export default function FiscalPage() {
         }
 
         @media (max-width: 1100px) {
+          .metricas-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
           .setores-grid {
             grid-template-columns: repeat(3, minmax(0, 1fr));
           }
 
           .funcionalidades-grid,
           .regimes-grid,
-          .tecnologia-grid {
+          .tecnologia-grid,
+          .entregaveis-grid,
+          .diferenciais-grid,
+          .riscos-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
           }
         }
@@ -455,11 +678,16 @@ export default function FiscalPage() {
             font-size: 1.55rem;
           }
 
+          .metricas-grid,
           .setores-grid,
           .funcionalidades-grid,
           .resultados-grid,
           .regimes-grid,
-          .tecnologia-grid {
+          .tecnologia-grid,
+          .entregaveis-grid,
+          .diferenciais-grid,
+          .riscos-grid,
+          .faq-grid {
             grid-template-columns: 1fr;
           }
 

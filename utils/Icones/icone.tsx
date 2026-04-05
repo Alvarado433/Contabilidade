@@ -28,12 +28,12 @@ import {
   FaBalanceScale,
   FaBriefcaseMedical,
   FaUniversity,
-  FaBuilding as FaBuildingColumns,
   FaBars,
   FaChevronDown,
   FaChevronUp,
   FaTimes,
   FaWhatsapp,
+  FaBuilding as FaBuildingColumns,
 } from "react-icons/fa";
 
 type Props = {
@@ -54,12 +54,10 @@ const iconMap: Record<string, React.ReactNode> = {
   "fa-brands fa-instagram": <FaInstagram />,
   "fa-brands fa-linkedin-in": <FaLinkedinIn />,
   "fa-solid fa-arrow-up": <FaArrowUp />,
-
   "fa-solid fa-building": <FaBuilding />,
   "fa-solid fa-calculator": <FaCalculator />,
   "fa-solid fa-users-gear": <FaUsersCog />,
   "fa-solid fa-file-invoice-dollar": <FaFileInvoiceDollar />,
-
   "fa-solid fa-chart-line": <FaChartLine />,
   "fa-solid fa-star": <FaStar />,
   "fa-solid fa-lock": <FaLock />,
@@ -72,7 +70,7 @@ const iconMap: Record<string, React.ReactNode> = {
   "fa-solid fa-building-columns": <FaBuildingColumns />,
   "fa-solid fa-university": <FaUniversity />,
 
-  // Ícones usados no Navbar
+  // Navbar
   "fa-solid fa-bars": <FaBars />,
   "fa-solid fa-chevron-down": <FaChevronDown />,
   "fa-solid fa-chevron-up": <FaChevronUp />,

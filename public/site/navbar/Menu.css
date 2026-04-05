@@ -805,3 +805,33 @@
     max-width: calc(100vw - 10px);
   }
 }
+.navbar-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.navbar-icon-sm {
+  font-size: 12px;
+}
+
+.menu-item-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon {
+  font-size: 18px;
+}

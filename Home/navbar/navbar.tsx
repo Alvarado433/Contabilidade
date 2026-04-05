@@ -3,12 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import {
-  FaBars,
-  FaChevronDown,
-  FaChevronUp,
-  FaTimes,
-} from "react-icons/fa";
 import Icone from "@/utils/Icones/icone";
 
 type ItemMenu = {
@@ -101,6 +95,11 @@ export default function Navbar({
     }
   };
 
+  const abrirLinkExterno = (url: string) => {
+    if (!url) return;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   const getSocialIconName = (url: string) => {
     if (url.includes("wa.me") || url.includes("whatsapp")) {
       return "bi bi-whatsapp";
@@ -157,7 +156,7 @@ export default function Navbar({
               onClick={() => setMenuMobileAberto(true)}
               aria-label="Abrir menu"
             >
-              <FaBars />
+              <Icone nome="fa-solid fa-bars" className="navbar-icon" />
             </button>
           </div>
 
@@ -182,8 +181,13 @@ export default function Navbar({
                   onMouseLeave={() => setDropdownAberto(null)}
                 >
                   <button type="button" className="menu-item menu-btn-reset">
-                    <span>{item.titulo}</span>
-                    <FaChevronDown size={12} />
+                    <span className="menu-item-content">
+                      <span>{item.titulo}</span>
+                      <Icone
+                        nome="fa-solid fa-chevron-down"
+                        className="navbar-icon navbar-icon-sm"
+                      />
+                    </span>
                   </button>
 
                   <div
@@ -217,7 +221,9 @@ export default function Navbar({
                     navegarComToast(item.url, `Abrindo ${item.titulo}...`)
                   }
                 >
-                  {item.titulo}
+                  <span className="menu-item-content">
+                    <span>{item.titulo}</span>
+                  </span>
                 </button>
               )
             )}
@@ -258,7 +264,7 @@ export default function Navbar({
             onClick={fecharSidebar}
             aria-label="Fechar menu"
           >
-            <FaTimes />
+            <Icone nome="fa-solid fa-xmark" className="navbar-icon" />
           </button>
         </div>
 
@@ -273,9 +279,15 @@ export default function Navbar({
                 >
                   <span>{item.titulo}</span>
                   {submenuMobileAberto === item.titulo ? (
-                    <FaChevronUp size={14} />
+                    <Icone
+                      nome="fa-solid fa-chevron-up"
+                      className="navbar-icon navbar-icon-sm"
+                    />
                   ) : (
-                    <FaChevronDown size={14} />
+                    <Icone
+                      nome="fa-solid fa-chevron-down"
+                      className="navbar-icon navbar-icon-sm"
+                    />
                   )}
                 </button>
 
@@ -335,16 +347,18 @@ export default function Navbar({
           {social.map((item, index) => {
             const iconName = getSocialIconName(item.url);
 
+            if (!iconName) return null;
+
             return (
-              <a
+              <button
                 key={`${item.url}-${index}`}
-                href={item.url}
+                type="button"
+                className="social-btn"
                 aria-label={`rede-social-${index}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => abrirLinkExterno(item.url)}
               >
-                <Icone nome={iconName} />
-              </a>
+                <Icone nome={iconName} className="navbar-icon social-icon" />
+              </button>
             );
           })}
         </div>

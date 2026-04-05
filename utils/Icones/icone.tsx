@@ -29,6 +29,11 @@ import {
   FaBriefcaseMedical,
   FaUniversity,
   FaBuilding as FaBuildingColumns,
+  FaBars,
+  FaChevronDown,
+  FaChevronUp,
+  FaTimes,
+  FaWhatsapp,
 } from "react-icons/fa";
 
 type Props = {
@@ -66,6 +71,15 @@ const iconMap: Record<string, React.ReactNode> = {
   "fa-solid fa-briefcase-medical": <FaBriefcaseMedical />,
   "fa-solid fa-building-columns": <FaBuildingColumns />,
   "fa-solid fa-university": <FaUniversity />,
+
+  // Ícones usados no Navbar
+  "fa-solid fa-bars": <FaBars />,
+  "fa-solid fa-chevron-down": <FaChevronDown />,
+  "fa-solid fa-chevron-up": <FaChevronUp />,
+  "fa-solid fa-xmark": <FaTimes />,
+
+  // Social
+  "bi bi-whatsapp": <FaWhatsapp />,
 };
 
 export default function Icone({ nome, className }: Props) {

@@ -1,7 +1,12 @@
-import dados from "@/Dados/site";
+'use client';
+
+import bannerData from "@/Dados/Banner/banner";
+import { BannerEmpresaData } from "@/Dados/Interfaces/banner";
+
+
 
 export default function BannerInterno() {
-  const banner = dados.bannerEmpresa;
+  const banner = bannerData.bannerEmpresa as BannerEmpresaData;
 
   return (
     <>
@@ -10,36 +15,40 @@ export default function BannerInterno() {
           className="banner-card"
           style={{
             background:
-              banner?.cores?.gradiente ||
+              banner.cores?.gradiente ||
               "linear-gradient(135deg, #004aad 0%, #007bff 100%)",
           }}
         >
-          <span className="banner-tag">Serviços Empresariais</span>
+          <span className="banner-tag">
+            {banner.tag || "Serviços Empresariais"}
+          </span>
 
-          <h1>{banner?.titulo}</h1>
-          <h2>{banner?.subtitulo}</h2>
-          <p>{banner?.descricao}</p>
+          <h1>{banner.titulo}</h1>
+          <h2>{banner.subtitulo}</h2>
+          <p>{banner.descricao}</p>
 
           <div className="banner-acoes">
             <a
-              href={banner?.botoes?.principal?.url || "/contato"}
+              href={banner.botoes?.principal?.url || "/contato"}
               className="botao-primario"
-              style={{ background: banner?.cores?.botao || "#004aad" }}
+              style={{
+                background: banner.cores?.botao || "#004aad",
+              }}
             >
-              {banner?.botoes?.principal?.texto || "Solicitar atendimento"}
+              {banner.botoes?.principal?.texto || "Solicitar atendimento"}
             </a>
 
             <a
-              href={banner?.botoes?.secundario?.url || "#conteudo"}
+              href={banner.botoes?.secundario?.url || "#conteudo"}
               className="botao-secundario"
             >
-              {banner?.botoes?.secundario?.texto || "Ver detalhes"}
+              {banner.botoes?.secundario?.texto || "Ver detalhes"}
             </a>
           </div>
         </div>
       </section>
 
-      <style>{`
+      <style jsx>{`
         .banner-wrapper {
           width: 100%;
           display: flex;
@@ -65,8 +74,8 @@ export default function BannerInterno() {
           position: absolute;
           inset: 0;
           background:
-            radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 30%),
-            radial-gradient(circle at bottom right, rgba(255,255,255,0.08), transparent 28%);
+            radial-gradient(circle at top left, rgba(255, 255, 255, 0.16), transparent 30%),
+            radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.08), transparent 28%);
           pointer-events: none;
         }
 

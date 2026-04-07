@@ -4,35 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import Icone from "@/utils/Icones/icone";
-
-type ItemMenu = {
-  titulo: string;
-  url: string;
-  icone?: string;
-  filhos?: ItemMenu[];
-};
-
-type LogoProps = {
-  nome: string;
-  subtitulo: string;
-  url: string;
-};
-
-type BotaoDireitoProps = {
-  titulo: string;
-  url: string;
-};
-
-type SocialItem = {
-  url: string;
-};
-
-type NavbarProps = {
-  logo: LogoProps;
-  itens: ItemMenu[];
-  botaoDireito: BotaoDireitoProps;
-  social: SocialItem[];
-};
+import { NavbarProps } from "@/Dados/Interfaces/navbar";
 
 export default function Navbar({
   logo,
@@ -121,42 +93,6 @@ export default function Navbar({
     return "";
   };
 
-  const getItemIconName = (item: ItemMenu) => {
-    if (item.icone) return item.icone;
-
-    const titulo = item.titulo.toLowerCase().trim();
-
-    if (titulo.includes("início") || titulo.includes("inicio")) {
-      return "fa-solid fa-house";
-    }
-
-    if (titulo.includes("serviço") || titulo.includes("servico")) {
-      return "fa-solid fa-briefcase";
-    }
-
-    if (titulo.includes("ação") || titulo.includes("acao")) {
-      return "fa-solid fa-users";
-    }
-
-    if (titulo.includes("sobre")) {
-      return "fa-solid fa-circle-info";
-    }
-
-    if (titulo.includes("blog")) {
-      return "fa-solid fa-blog";
-    }
-
-    if (titulo.includes("contato")) {
-      return "fa-solid fa-envelope";
-    }
-
-    if (titulo.includes("consultoria")) {
-      return "fa-solid fa-handshake";
-    }
-
-    return "";
-  };
-
   useEffect(() => {
     fecharTudo();
   }, [pathname]);
@@ -210,8 +146,6 @@ export default function Navbar({
 
           <nav className="menu-central">
             {itens.map((item) => {
-              const itemIcone = getItemIconName(item);
-
               return item.filhos && item.filhos.length > 0 ? (
                 <div
                   key={item.titulo}
@@ -221,9 +155,9 @@ export default function Navbar({
                 >
                   <button type="button" className="menu-item menu-btn-reset">
                     <span className="menu-item-content">
-                      {itemIcone ? (
+                      {item.icone ? (
                         <Icone
-                          nome={itemIcone}
+                          nome={item.icone}
                           className="navbar-icon navbar-icon-sm"
                         />
                       ) : null}
@@ -242,33 +176,29 @@ export default function Navbar({
                       dropdownAberto === item.titulo ? "show" : ""
                     }`}
                   >
-                    {item.filhos.map((filho) => {
-                      const filhoIcone = getItemIconName(filho);
-
-                      return (
-                        <button
-                          key={filho.titulo}
-                          type="button"
-                          className="dropdown-item dropdown-btn-reset"
-                          onClick={() =>
-                            navegarComToast(
-                              filho.url,
-                              `Abrindo ${filho.titulo}...`
-                            )
-                          }
-                        >
-                          <span className="menu-item-content">
-                            {filhoIcone ? (
-                              <Icone
-                                nome={filhoIcone}
-                                className="navbar-icon navbar-icon-sm"
-                              />
-                            ) : null}
-                            <span>{filho.titulo}</span>
-                          </span>
-                        </button>
-                      );
-                    })}
+                    {item.filhos.map((filho) => (
+                      <button
+                        key={filho.titulo}
+                        type="button"
+                        className="dropdown-item dropdown-btn-reset"
+                        onClick={() =>
+                          navegarComToast(
+                            filho.url,
+                            `Abrindo ${filho.titulo}...`
+                          )
+                        }
+                      >
+                        <span className="menu-item-content">
+                          {filho.icone ? (
+                            <Icone
+                              nome={filho.icone}
+                              className="navbar-icon navbar-icon-sm"
+                            />
+                          ) : null}
+                          <span>{filho.titulo}</span>
+                        </span>
+                      </button>
+                    ))}
                   </div>
                 </div>
               ) : (
@@ -281,9 +211,9 @@ export default function Navbar({
                   }
                 >
                   <span className="menu-item-content">
-                    {itemIcone ? (
+                    {item.icone ? (
                       <Icone
-                        nome={itemIcone}
+                        nome={item.icone}
                         className="navbar-icon navbar-icon-sm"
                       />
                     ) : null}
@@ -306,13 +236,12 @@ export default function Navbar({
               }
             >
               <span className="menu-item-content">
-                <Icone
-                  nome={getItemIconName({
-                    titulo: botaoDireito.titulo,
-                    url: botaoDireito.url,
-                  })}
-                  className="navbar-icon navbar-icon-sm"
-                />
+                {botaoDireito.icone ? (
+                  <Icone
+                    nome={botaoDireito.icone}
+                    className="navbar-icon navbar-icon-sm"
+                  />
+                ) : null}
                 <span>{botaoDireito.titulo}</span>
               </span>
             </button>
@@ -344,8 +273,6 @@ export default function Navbar({
 
         <nav className="sidebar-nav">
           {itens.map((item) => {
-            const itemIcone = getItemIconName(item);
-
             return item.filhos && item.filhos.length > 0 ? (
               <div key={item.titulo} className="sidebar-group">
                 <button
@@ -354,9 +281,9 @@ export default function Navbar({
                   onClick={() => toggleSubmenuMobile(item.titulo)}
                 >
                   <span className="menu-item-content">
-                    {itemIcone ? (
+                    {item.icone ? (
                       <Icone
-                        nome={itemIcone}
+                        nome={item.icone}
                         className="navbar-icon navbar-icon-sm"
                       />
                     ) : null}
@@ -381,34 +308,30 @@ export default function Navbar({
                     submenuMobileAberto === item.titulo ? "open" : ""
                   }`}
                 >
-                  {item.filhos.map((filho) => {
-                    const filhoIcone = getItemIconName(filho);
-
-                    return (
-                      <button
-                        key={filho.titulo}
-                        type="button"
-                        className="sidebar-sublink sidebar-sublink-btn"
-                        onClick={() =>
-                          navegarComToast(
-                            filho.url,
-                            `Abrindo ${filho.titulo}...`,
-                            true
-                          )
-                        }
-                      >
-                        <span className="menu-item-content">
-                          {filhoIcone ? (
-                            <Icone
-                              nome={filhoIcone}
-                              className="navbar-icon navbar-icon-sm"
-                            />
-                          ) : null}
-                          <span>{filho.titulo}</span>
-                        </span>
-                      </button>
-                    );
-                  })}
+                  {item.filhos.map((filho) => (
+                    <button
+                      key={filho.titulo}
+                      type="button"
+                      className="sidebar-sublink sidebar-sublink-btn"
+                      onClick={() =>
+                        navegarComToast(
+                          filho.url,
+                          `Abrindo ${filho.titulo}...`,
+                          true
+                        )
+                      }
+                    >
+                      <span className="menu-item-content">
+                        {filho.icone ? (
+                          <Icone
+                            nome={filho.icone}
+                            className="navbar-icon navbar-icon-sm"
+                          />
+                        ) : null}
+                        <span>{filho.titulo}</span>
+                      </span>
+                    </button>
+                  ))}
                 </div>
               </div>
             ) : (
@@ -421,9 +344,9 @@ export default function Navbar({
                 }
               >
                 <span className="menu-item-content">
-                  {itemIcone ? (
+                  {item.icone ? (
                     <Icone
-                      nome={itemIcone}
+                      nome={item.icone}
                       className="navbar-icon navbar-icon-sm"
                     />
                   ) : null}
@@ -445,13 +368,12 @@ export default function Navbar({
             }
           >
             <span className="menu-item-content">
-              <Icone
-                nome={getItemIconName({
-                  titulo: botaoDireito.titulo,
-                  url: botaoDireito.url,
-                })}
-                className="navbar-icon navbar-icon-sm"
-              />
+              {botaoDireito.icone ? (
+                <Icone
+                  nome={botaoDireito.icone}
+                  className="navbar-icon navbar-icon-sm"
+                />
+              ) : null}
               <span>{botaoDireito.titulo}</span>
             </span>
           </button>

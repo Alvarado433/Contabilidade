@@ -1,6 +1,6 @@
 "use client";
 
-import { iconesMap, IconName } from "@/Dados/Interfaces/icones";
+import { iconesMap } from "@/Dados/Interfaces/icones";
 import React from "react";
 
 
@@ -12,9 +12,12 @@ type Props = {
 export default function Icone({ nome, className }: Props) {
   if (!nome) return null;
 
-  const IconComponent = iconesMap[nome as IconName];
+  const IconComponent = iconesMap[nome];
 
-  if (!IconComponent) return null;
+  if (!IconComponent) {
+    console.warn("Ícone não encontrado:", nome);
+    return null;
+  }
 
   return <IconComponent className={className} />;
 }

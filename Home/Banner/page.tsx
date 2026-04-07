@@ -87,6 +87,7 @@ export default function Banner({ banner }: BannerProps) {
         .banner-badge {
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           padding: 8px 14px;
           border-radius: 999px;
           background: rgba(255, 255, 255, 0.1);
@@ -143,6 +144,7 @@ export default function Banner({ banner }: BannerProps) {
           font-size: 0.96rem;
           transition: all 0.28s ease;
           min-width: 190px;
+          text-align: center;
         }
 
         .banner-btn-icon {
@@ -151,6 +153,7 @@ export default function Banner({ banner }: BannerProps) {
           justify-content: center;
           font-size: 0.95rem;
           line-height: 1;
+          flex-shrink: 0;
         }
 
         .banner-btn-primary {
@@ -244,9 +247,14 @@ export default function Banner({ banner }: BannerProps) {
         }
 
         @media (max-width: 900px) {
+          .banner {
+            padding: 64px 18px;
+          }
+
           .banner-container {
             flex-direction: column;
             text-align: center;
+            gap: 34px;
           }
 
           .banner-conteudo {
@@ -280,54 +288,98 @@ export default function Banner({ banner }: BannerProps) {
 
         @media (max-width: 600px) {
           .banner {
-            padding: 58px 16px;
+            padding: 52px 14px;
+          }
+
+          .banner-container {
+            gap: 26px;
           }
 
           .banner-badge {
-            font-size: 0.8rem;
+            font-size: 0.76rem;
             padding: 7px 12px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
           }
 
           .banner-titulo {
-            font-size: 2.15rem;
-            line-height: 1.15;
+            font-size: 1.95rem;
+            line-height: 1.18;
+            letter-spacing: -0.01em;
+          }
+
+          .banner-linha {
+            width: 58px;
+            margin: 18px auto;
           }
 
           .banner-descricao {
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 26px;
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 22px;
           }
 
           .banner-botoes {
             width: 100%;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
           }
 
           .banner-btn {
             width: 100%;
             min-width: unset;
-            padding: 14px 18px;
+            padding: 13px 14px;
+            font-size: 0.88rem;
+            gap: 8px;
           }
 
-          .banner-imagem img {
-            height: 250px;
+          .banner-btn-icon {
+            font-size: 0.9rem;
           }
 
           .banner-imagem-box {
-            border-radius: 18px;
-            padding: 6px;
-          }
-        }
-
-        @media (max-width: 420px) {
-          .banner-titulo {
-            font-size: 1.9rem;
+            border-radius: 16px;
+            padding: 5px;
           }
 
           .banner-imagem img {
             height: 220px;
+            border-radius: 12px;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .banner {
+            padding: 46px 12px;
+          }
+
+          .banner-titulo {
+            font-size: 1.72rem;
+          }
+
+          .banner-descricao {
+            font-size: 0.92rem;
+            line-height: 1.7;
+          }
+
+          .banner-botoes {
+            gap: 10px;
+          }
+
+          .banner-btn {
+            padding: 12px 10px;
+            font-size: 0.8rem;
+            border-radius: 16px;
+          }
+
+          .banner-btn span:last-child {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .banner-imagem img {
+            height: 190px;
           }
         }
       `}</style>

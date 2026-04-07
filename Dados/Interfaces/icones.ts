@@ -1,13 +1,13 @@
 import {
   FaHome,
   FaUsers,
+  FaUserFriends,
   FaBriefcase,
   FaEnvelope,
   FaBuilding,
   FaCalculator,
   FaFileInvoiceDollar,
   FaChartLine,
-  FaUserFriends,
   FaBlog,
   FaInfoCircle,
   FaHandshake,
@@ -16,9 +16,12 @@ import {
   FaChevronUp,
   FaTimes,
   FaWhatsapp,
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
 } from "react-icons/fa";
 
-export const iconesMap: Record<string, any> = {
+export const iconesMap: Record<string, React.ComponentType<{ className?: string }>> = {
   "fa-solid fa-house": FaHome,
   "fa-solid fa-users": FaUsers,
   "fa-solid fa-user-group": FaUserFriends,
@@ -32,12 +35,13 @@ export const iconesMap: Record<string, any> = {
   "fa-solid fa-circle-info": FaInfoCircle,
   "fa-solid fa-handshake": FaHandshake,
 
-  // navbar
   "fa-solid fa-bars": FaBars,
   "fa-solid fa-chevron-down": FaChevronDown,
   "fa-solid fa-chevron-up": FaChevronUp,
   "fa-solid fa-xmark": FaTimes,
 
-  // social
   "bi bi-whatsapp": FaWhatsapp,
+  "fa-brands fa-facebook-f": FaFacebookF,
+  "fa-brands fa-instagram": FaInstagram,
+  "fa-brands fa-linkedin-in": FaLinkedinIn,
 };

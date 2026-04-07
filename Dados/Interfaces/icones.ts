@@ -19,9 +19,17 @@ import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
+  FaUsersCog,
+  FaArrowUp,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaShieldAlt,
 } from "react-icons/fa";
 
-export const iconesMap: Record<string, React.ComponentType<{ className?: string }>> = {
+export const iconesMap: Record<
+  string,
+  React.ComponentType<{ className?: string }>
+> = {
   "fa-solid fa-house": FaHome,
   "fa-solid fa-users": FaUsers,
   "fa-solid fa-user-group": FaUserFriends,
@@ -34,6 +42,12 @@ export const iconesMap: Record<string, React.ComponentType<{ className?: string 
   "fa-solid fa-blog": FaBlog,
   "fa-solid fa-circle-info": FaInfoCircle,
   "fa-solid fa-handshake": FaHandshake,
+
+  "fa-solid fa-users-gear": FaUsersCog,
+  "fa-solid fa-arrow-up": FaArrowUp,
+  "fa-solid fa-location-dot": FaMapMarkerAlt,
+  "fa-solid fa-phone": FaPhone,
+  "fa-solid fa-shield-halved": FaShieldAlt,
 
   "fa-solid fa-bars": FaBars,
   "fa-solid fa-chevron-down": FaChevronDown,

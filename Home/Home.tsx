@@ -21,22 +21,16 @@ export default function Home() {
         telefone={dados.topo.telefone}
         whatsapp={dados.topo.whatsapp}
       />
-
       <Navbar
         logo={dados.menu.logo}
         itens={dados.menu.itens}
         botaoDireito={dados.menu.botaoDireito}
         social={dados.rodape.social}
       />
-
       <Banner banner={bannerData.banner} />
-
-      
-
       <RenderServicos servicos={dados.renderServicos} />
 
       <EspecialistaDestaque banner={bannerDestaque} />
-      
       <Carrossel />
       <Footer data={footerData} />
     </>

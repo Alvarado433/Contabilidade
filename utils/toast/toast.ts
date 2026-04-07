@@ -22,7 +22,7 @@ class ToastService {
       position: "top-right",
       autoClose: 3500,
       theme: "dark",
-    });
+    });/*  */
   }
 
   info(mensagem: string) {
@@ -33,5 +33,5 @@ class ToastService {
     });
   }
 }
-
+/*  */
 export const Toast = new ToastService();

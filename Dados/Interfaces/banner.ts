@@ -33,3 +33,24 @@ export type BannerEmpresaData = {
 export type ContabilidadeBannerProps = {
   banner: BannerContabilidadeData;
 };
+
+export type BannerButton = {
+  texto: string;
+  icone: string;
+  url: string;
+  classe?: string;
+};
+
+export type BannerData = {
+  titulo: string;
+  descricao: string;
+  botoes: BannerButton[];
+  imagem: {
+    src: string;
+    alt: string;
+  };
+};
+
+export type BannerProps = {
+  banner: BannerData;
+};

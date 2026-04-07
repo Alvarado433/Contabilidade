@@ -82,7 +82,7 @@ const iconMap: Record<string, React.ReactNode> = {
   // social
   "bi bi-whatsapp": <FaWhatsapp />,
 
-  // extras para menu
+  // extras
   "fa-solid fa-blog": <FaBlog />,
   "fa-solid fa-circle-info": <FaInfoCircle />,
   "fa-solid fa-handshake": <FaHandshake />,
@@ -91,5 +91,9 @@ const iconMap: Record<string, React.ReactNode> = {
 export default function Icone({ nome, className }: Props) {
   if (!nome) return null;
 
-  return <span className={className}>{iconMap[nome] ?? null}</span>;
+  return (
+    <span className={className}>
+      {iconMap[nome] ?? null}
+    </span>
+  );
 }

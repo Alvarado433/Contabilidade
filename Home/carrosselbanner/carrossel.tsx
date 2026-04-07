@@ -3,48 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import Icone from "@/utils/Icones/icone";
 import bannerCarrossel from "@/Dados/Banner/bannercarrossel";
+import { Slide } from "@/Dados/Interfaces/carrossel";
 
-type Botao = {
-  texto: string;
-  icone?: string;
-  url: string;
-};
-
-type CardEspecialista = {
-  tipo: "especialista";
-  nome: string;
-  cargo: string;
-  foto: string;
-  alt?: string;
-  badge?: string;
-};
-
-type CardMetricas = {
-  tipo: "metricas";
-  badge?: string;
-  metricas: string[];
-};
-
-type CardTabela = {
-  tipo: "tabela";
-  badge?: string;
-  tabela: {
-    titulo: string;
-    descricao: string;
-  }[];
-};
-
-type Card = CardEspecialista | CardMetricas | CardTabela;
-
-type Slide = {
-  id: number;
-  tag?: string;
-  titulo: string;
-  destaque?: string;
-  descricao: string;
-  botao: Botao;
-  card: Card;
-};
 
 export default function Carrossel() {
   const cards = useMemo(() => bannerCarrossel as Slide[], []);

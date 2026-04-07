@@ -1,37 +1,7 @@
-'use client';
+"use client";
 
-import { FaBuilding, FaEnvelope } from "react-icons/fa";
-
-type BannerButton = {
-  texto: string;
-  icone: string;
-  url: string;
-  classe?: string;
-};
-
-type BannerData = {
-  titulo: string;
-  descricao: string;
-  botoes: BannerButton[];
-  imagem: {
-    src: string;
-    alt: string;
-  };
-};
-
-type BannerProps = {
-  banner: BannerData;
-};
-
-const iconMap: Record<string, React.ReactNode> = {
-  "fa-solid fa-building": <FaBuilding />,
-  "fa-solid fa-envelope": <FaEnvelope />,
-};
-
-function renderIcon(iconName?: string) {
-  if (!iconName) return null;
-  return iconMap[iconName] ?? null;
-}
+import { BannerProps } from "@/Dados/Interfaces/banner";
+import Icone from "@/utils/Icones/icone";
 
 export default function Banner({ banner }: BannerProps) {
   const { titulo, descricao, botoes, imagem } = banner;
@@ -60,9 +30,12 @@ export default function Banner({ banner }: BannerProps) {
                     index === 0 ? "banner-btn-primary" : "banner-btn-secondary"
                   }`}
                 >
-                  <span className="banner-btn-icon">
-                    {renderIcon(botao.icone)}
-                  </span>
+                  {botao.icone ? (
+                    <span className="banner-btn-icon">
+                      <Icone nome={botao.icone} />
+                    </span>
+                  ) : null}
+
                   <span>{botao.texto}</span>
                 </a>
               ))}
@@ -173,10 +146,11 @@ export default function Banner({ banner }: BannerProps) {
         }
 
         .banner-btn-icon {
-          display: flex;
+          display: inline-flex;
           align-items: center;
           justify-content: center;
           font-size: 0.95rem;
+          line-height: 1;
         }
 
         .banner-btn-primary {

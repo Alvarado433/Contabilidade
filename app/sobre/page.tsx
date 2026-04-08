@@ -1,12 +1,13 @@
-import dados from "@/Dados/site";
-import menu from "@/Dados/menu/menu";
+"use client";
 
 
 import footerData from "@/Dados/Footer/footerdata";
-import Topo from "@/Home/Topbar/topo";
+import menu from "@/Dados/menu/menu";
+import dados from "@/Dados/site";
 import sobre from "@/Dados/sobre/sobre";
 import Footer from "@/Home/footer/footer";
 import Navbar from "@/Home/navbar/navbar";
+import Topo from "@/Home/Topbar/topo";
 
 export default function SobrePage() {
   return (

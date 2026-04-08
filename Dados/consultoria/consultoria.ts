@@ -7,7 +7,7 @@ const consultoria = {
     botoes: {
       principal: {
         texto: "Quero minha consultoria",
-        url: "/contato",
+        url: "/consultoria/dados",
       },
       secundario: {
         texto: "Falar no WhatsApp",

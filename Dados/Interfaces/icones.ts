@@ -2,6 +2,7 @@ import {
   FaHome,
   FaUsers,
   FaUserFriends,
+  FaUserTie,
   FaBriefcase,
   FaEnvelope,
   FaBuilding,
@@ -24,36 +25,93 @@ import {
   FaMapMarkerAlt,
   FaPhone,
   FaShieldAlt,
+  FaRobot,
+  FaHeadset,
+  FaCloud,
+  FaLock,
+  FaStar,
+  FaCheck,
+  FaCheckCircle,
+  FaClock,
+  FaRocket,
+  FaBullseye,
+  FaCogs,
+  FaLightbulb,
+  FaSearch,
+  FaChartPie,
+  FaMoneyBillWave,
+  FaFileAlt,
+  FaClipboardList,
+  FaUserCheck,
+  FaDollarSign,
+  FaBalanceScale,
+  FaUniversity,
+  FaTools,
 } from "react-icons/fa";
 
 export const iconesMap: Record<
   string,
   React.ComponentType<{ className?: string }>
 > = {
+  // ===== PRINCIPAIS =====
   "fa-solid fa-house": FaHome,
   "fa-solid fa-users": FaUsers,
   "fa-solid fa-user-group": FaUserFriends,
+  "fa-solid fa-user-tie": FaUserTie,
   "fa-solid fa-briefcase": FaBriefcase,
   "fa-solid fa-envelope": FaEnvelope,
   "fa-solid fa-building": FaBuilding,
   "fa-solid fa-calculator": FaCalculator,
   "fa-solid fa-file-invoice-dollar": FaFileInvoiceDollar,
   "fa-solid fa-chart-line": FaChartLine,
+  "fa-solid fa-chart-pie": FaChartPie,
   "fa-solid fa-blog": FaBlog,
   "fa-solid fa-circle-info": FaInfoCircle,
   "fa-solid fa-handshake": FaHandshake,
 
+  // ===== SISTEMA / ADMIN =====
   "fa-solid fa-users-gear": FaUsersCog,
-  "fa-solid fa-arrow-up": FaArrowUp,
+  "fa-solid fa-cogs": FaCogs,
+  "fa-solid fa-tools": FaTools,
+  "fa-solid fa-robot": FaRobot,
+  "fa-solid fa-cloud": FaCloud,
+  "fa-solid fa-lock": FaLock,
+
+  // ===== NEGÓCIO / CONSULTORIA =====
+  "fa-solid fa-rocket": FaRocket,
+  "fa-solid fa-bullseye": FaBullseye,
+  "fa-solid fa-lightbulb": FaLightbulb,
+  "fa-solid fa-search": FaSearch,
+  "fa-solid fa-money-bill-wave": FaMoneyBillWave,
+  "fa-solid fa-dollar-sign": FaDollarSign,
+  "fa-solid fa-balance-scale": FaBalanceScale,
+  "fa-solid fa-university": FaUniversity,
+
+  // ===== DOCUMENTOS =====
+  "fa-solid fa-file-alt": FaFileAlt,
+  "fa-solid fa-clipboard-list": FaClipboardList,
+
+  // ===== STATUS / AÇÕES =====
+  "fa-solid fa-check": FaCheck,
+  "fa-solid fa-check-circle": FaCheckCircle,
+  "fa-solid fa-clock": FaClock,
+  "fa-solid fa-star": FaStar,
+  "fa-solid fa-user-check": FaUserCheck,
+
+  // ===== CONTATO =====
   "fa-solid fa-location-dot": FaMapMarkerAlt,
   "fa-solid fa-phone": FaPhone,
+  "fa-solid fa-headset": FaHeadset,
   "fa-solid fa-shield-halved": FaShieldAlt,
 
+  // ===== NAVEGAÇÃO =====
   "fa-solid fa-bars": FaBars,
   "fa-solid fa-chevron-down": FaChevronDown,
   "fa-solid fa-chevron-up": FaChevronUp,
   "fa-solid fa-xmark": FaTimes,
+  "fa-solid fa-arrow-up": FaArrowUp,
 
+  // ===== REDES SOCIAIS =====
   "bi bi-whatsapp": FaWhatsapp,
   "fa-brands fa-facebook-f": FaFacebookF,
   "fa-brands fa-instagram": FaInstagram,
